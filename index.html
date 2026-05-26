@@ -1,482 +1,620 @@
 <!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NotMyLeaks | #1 NSFW  Community</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ff6a00'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='white' stroke-width='6'/%3E%3Ccircle cx='32' cy='32' r='7' fill='white'/%3E%3Cpath d='M32 14 A18 18 0 0 1 50 32' fill='none' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E"/>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-
+<html><head>
+<meta charset="utf-8">
+<title>NotMyLeaks | Official Links</title>
+<meta property="og:title" content="NotMyLeaks — Official Links">
+<link rel="icon" type="image/png" href="/notmyleaks.png">
+<link rel="apple-touch-icon" href="/notmyleaks.png">
+<meta name="description" content="#1 Best Place for Mod Menus, Cheats & Game Accounts">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f0f10">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-    :root {
-        --primary: #ff6a00;
-        --primary2: #ff9d00;
-        --bg-dark: #0a0a0a;
-        --glass: rgba(255,255,255,0.05);
-        --glass-border: rgba(255,255,255,0.1);
-        --gold: #FFD700;
-    }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f0f10;
+  --card-bg:#181819;
+  --dark-mode-inactive:#333334;
+  --read-grey:#888889;
+  --white:#f0f0f0;
+  --font:'Poppins',sans-serif;
+}
+body{
+  background-color:var(--bg);
+  color:var(--white);
+  font-family:var(--font);
+  font-size:15px;
+  font-weight:400;
+  line-height:20px;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+a{color:var(--white);text-decoration:none}
+img{max-width:100%;display:inline-block}
+h1{margin:0}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+.page-wrapper{flex-direction:column;min-height:100vh;display:flex;flex:1}
 
-    body {
-        background-color: var(--bg-dark);
-        color: white;
-        min-height: 100vh;
-        overflow-x: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.profile-bg-hero-wrapper{
+  background-color:var(--bg);
+  height:100px;
+  position:relative;
+  flex-shrink:0;
+}
 
-    /* --- Video Background --- */
-    .video-background {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        z-index: -2;
-        filter: brightness(0.4) contrast(1.2) blur(3px);
-        transform: scale(1.1);
-    }
-    .video-background video {
-        width: 100%; height: 100%;
-        object-fit: cover;
-    }
+.page-share{
+  cursor:pointer;
+  background-color:rgba(255,255,255,.07);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:42px;
+  height:42px;
+  position:absolute;
+  top:14px;
+  right:14px;
+  border:1px solid rgba(255,255,255,.1);
+  transition:background .2s;
+}
+.page-share:hover{background-color:rgba(255,255,255,.13)}
+.page-share svg{width:19px;height:19px}
 
-    .overlay {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-        pointer-events: none;
-        z-index: -1;
-        opacity: 0.4;
-    }
+.section-container{
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:90%;
+  max-width:600px;
+  margin:0 auto;
+}
+.profile-info-wrapper{
+  background-color:var(--card-bg);
+  border-radius:16px;
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  max-width:600px;
+  margin-top:0;
+  margin-left:auto;
+  margin-right:auto;
+  padding-top:0;
+  padding-bottom:26px;
+}
+.profile-info-top-wrapper{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-top:-62px;
+  padding-top:0;
+}
+.profile-image-wrapper{
+  border-radius:50%;
+  width:125px;
+  height:125px;
+  overflow:hidden;
+  box-shadow:0 8px 40px rgba(0,0,0,.6);
+  border:3px solid var(--bg);
+  flex-shrink:0;
+}
+.profile-image{border-radius:50%;width:100%;height:100%;object-fit:cover;display:block}
+.profile-info-bottom-wrapper{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:100%;
+  max-width:420px;
+  margin:14px auto 5px;
+}
+.profile-name{
+  text-align:center;
+  font-size:28px;
+  font-weight:700;
+  line-height:1.1em;
+  letter-spacing:-.3px;
+  margin-bottom:8px;
+}
+.profile-bio{
+  text-align:center;
+  max-width:360px;
+  margin-bottom:10px;
+  color:#ebebeb;
+  font-size:14px;
+  font-weight:400;
+  line-height:1.5em;
+  padding:0 12px;
+}
+.contact-button-wrapper{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+  padding:0 25px;
+  margin-bottom:5px;
+}
+.contact-button{
+  border:1px solid var(--dark-mode-inactive);
+  color:var(--white);
+  border-radius:50px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:9px 18px;
+  font-weight:500;
+  font-size:13px;
+  transition:all .2s;
+  cursor:pointer;
+  background:none;
+  font-family:var(--font);
+  text-decoration:none;
+}
+.contact-button:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.05)}
+.contact-button svg{width:16px;height:16px;flex-shrink:0}
 
-    .container {
-        max-width: 600px;
-        width: 90%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        z-index: 10;
-        padding: 2rem 0;
-    }
+.section.link-section{flex:1;padding-top:24px;padding-bottom:32px;width:100%}
+.profile-link-wrapper{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:100%;
+  max-width:600px;
+  margin:0 auto;
+  gap:9px;
+}
+.link-item-wrapper{width:100%;display:flex;flex-direction:column}
+.link-button{
+  width:100%;
+  min-height:70px;
+  color:var(--white);
+  background-color:var(--card-bg);
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  padding:11px 16px 11px 76px;
+  text-decoration:none;
+  position:relative;
+  transition:background-color .15s,transform .1s;
+  overflow:hidden;
+}
+.link-button:hover{background-color:#1e1e1f;transform:translateY(-1px)}
+.link-button:active{transform:translateY(0)}
+.link-icon-float{
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:52px;
+  height:52px;
+  position:absolute;
+  left:12px;
+  flex-shrink:0;
+  overflow:hidden;
+}
+.link-icon-float img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
+.link-block-text-wrapper{flex:1;overflow:hidden}
+.link-name{margin-bottom:2px;font-weight:600;font-size:16px;letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.link-url{color:#919191;font-size:14px;font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.link-arrow-wrapper{flex:none;display:flex;align-items:center;padding-left:8px}
+.link-arrow-wrapper svg{width:18px;height:18px;opacity:.3}
 
-    /* --- Header --- */
-    header {
-        text-align: center;
-        margin-bottom: 3rem;
-        animation: slideDown 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
+.page-footer{padding:28px 20px 24px;text-align:center;flex-shrink:0}
+.footer-copyright{color:#d5d5d5;font-size:12px;font-weight:400;margin-bottom:5px}
+.footer-disclaimer{color:#d5d5d5;font-size:11px;font-weight:300}
 
-    .logo-img {
-        max-width: 280px;
-        width: 75%;
-        height: auto;
-        filter: drop-shadow(0 0 28px rgba(255,106,0,0.65));
-        display: block;
-        margin: 0 auto 0.5rem;
-    }
+.modal-overlay{
+  z-index:1049;
+  background-color:rgba(0,0,0,.75);
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:center;
+  width:100%;
+  height:100%;
+  position:fixed;
+  inset:0;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s;
+}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-card{
+  background-color:var(--card-bg);
+  border-radius:18px 18px 0 0;
+  color:var(--white);
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  max-width:600px;
+  padding-bottom:env(safe-area-inset-bottom, 16px);
+  transform:translateY(100%);
+  transition:transform .28s cubic-bezier(.22,.68,0,1.2);
+  max-height:90vh;
+  overflow-y:auto;
+}
+.modal-overlay.open .modal-card{transform:translateY(0)}
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 18px 14px;
+  font-size:17px;
+  font-weight:700;
+  position:sticky;
+  top:0;
+  background:var(--card-bg);
+  z-index:1;
+}
+.modal-close{
+  cursor:pointer;
+  width:28px;height:28px;
+  background:rgba(255,255,255,.07);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  border:none;
+  transition:background .15s;
+}
+.modal-close:hover{background:rgba(255,255,255,.13)}
+.modal-close svg{width:14px;height:14px;stroke:#fff;fill:none}
 
-    .logo-text {
-        font-size: 4rem;
-        font-weight: 900;
-        letter-spacing: -2px;
-        background: linear-gradient(135deg, #ff8100 30%, #ffb300);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        filter: drop-shadow(0 0 30px rgba(255,106,0,0.5));
-        cursor: pointer;
-        transition: 0.3s ease-in-out;
-        display: none;
-    }
-    .logo-text.show { display: block; }
+.share-options{padding:0 14px;display:flex;flex-direction:column;gap:5px}
+.share-option{
+  background-color:var(--bg);
+  border-radius:10px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:13px 14px;
+  transition:background .12s;
+  border:none;
+  color:var(--white);
+  font-family:var(--font);
+  font-size:14px;
+  font-weight:500;
+  width:100%;
+  text-decoration:none;
+}
+.share-option:hover{background:#1a1a1b}
+.share-option-left{display:flex;align-items:center;gap:12px}
+.share-icon{
+  width:34px;height:34px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.share-icon svg{width:17px;height:17px}
+.share-arrow{width:16px;height:16px;opacity:.3}
 
-    .tagline-container { display: inline-block; }
+.copy-row{
+  display:flex;align-items:center;
+  background-color:var(--bg);
+  border-radius:10px;
+  overflow:hidden;
+  margin:8px 14px 16px;
+  height:52px;
+  position:relative;
+}
+.copy-btn{
+  padding:0 16px;
+  background:rgba(255,255,255,.08);
+  border:none;
+  border-right:1px solid var(--dark-mode-inactive);
+  color:var(--white);
+  font-family:var(--font);
+  font-size:12px;font-weight:700;
+  cursor:pointer;
+  white-space:nowrap;
+  height:100%;
+  text-transform:uppercase;letter-spacing:.4px;
+  transition:background .12s;
+}
+.copy-btn:hover{background:rgba(255,255,255,.14)}
+.copy-url{
+  flex:1;padding:0 14px;
+  font-size:12px;color:#cfcfcf;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  font-family:var(--font);
+}
+.copy-done{
+  position:absolute;inset:0;
+  background:var(--bg);border-radius:10px;
+  display:none;align-items:center;justify-content:center;
+  font-size:13px;font-weight:600;color:#5cca7e;gap:7px;
+}
+.copy-done.show{display:flex}
+.copy-done svg{stroke:#5cca7e;fill:none;width:14px;height:14px}
 
-    .tagline {
-        font-size: 1.1rem;
-        color: rgba(255,255,255,0.9);
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-top: 12px;
-        background: rgba(255,106,0,0.12);
-        padding: 5px 18px;
-        border-radius: 50px;
-        backdrop-filter: blur(8px);
-        border: 1.5px solid rgba(255,106,0,0.4);
-        display: inline-block;
-        overflow: hidden;
-        border-right: 2px solid var(--primary);
-        white-space: nowrap;
-        position: relative;
-        max-width: 100%;
-        font-weight: 600;
-    }
-    .tagline::after {
-        content: '';
-        position: absolute;
-        top: 0; left: -100%;
-        width: 60%; height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,180,50,0.3), transparent);
-        animation: taglineSweep 3s ease-in-out infinite;
-    }
-    @keyframes taglineGlow {
-        0%, 100% { box-shadow: 0 0 14px rgba(255,106,0,0.4), 0 0 40px rgba(255,106,0,0.1); border-color: rgba(255,106,0,0.4); }
-        50%       { box-shadow: 0 0 24px rgba(255,160,0,0.7), 0 0 60px rgba(255,106,0,0.25); border-color: rgba(255,160,0,0.75); }
-    }
-    @keyframes taglineSweep {
-        0%  { left: -80%; }
-        60% { left: 130%; }
-        100%{ left: 130%; }
-    }
-
-    /* --- Links --- */
-    .links {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        perspective: 1000px;
-    }
-
-    .link {
-        position: relative;
-        background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid var(--glass-border);
-        border-radius: 16px;
-        padding: 1.2rem;
-        display: flex;
-        align-items: center;
-        gap: 1.2rem;
-        text-decoration: none;
-        color: white;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        overflow: hidden;
-        animation: fadeInUp 0.8s backwards;
-    }
-    .link:nth-child(1) { animation-delay: 0.2s; }
-    .link:nth-child(2) { animation-delay: 0.4s; }
-
-    .link:hover {
-        transform: translateY(-5px) scale(1.02);
-        border-color: rgba(255,255,255,0.3);
-        background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
-        box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.1);
-    }
-
-    .link::after {
-        content: '';
-        position: absolute;
-        top: 0; left: -100%;
-        width: 50%; height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        transform: skewX(-25deg);
-        transition: 0.5s;
-        pointer-events: none;
-    }
-    .link:hover::after {
-        left: 150%;
-        transition: 0.7s ease-in-out;
-    }
-
-    .link-icon {
-        width: 55px; height: 55px;
-        display: flex; align-items: center; justify-content: center;
-        border-radius: 12px;
-        font-size: 1.8rem;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        transition: transform 0.3s ease;
-        position: relative; z-index: 2;
-        flex-shrink: 0;
-        background: #4368f6;
-    }
-    .link:hover .link-icon { transform: scale(1.1) rotate(5deg); }
-
-    .telegram-bg {
-        background: linear-gradient(135deg, #229ed9, #1a7fb5);
-        box-shadow: 0 0 20px rgba(34,158,217,0.4);
-    }
-
-    .vip-bg {
-        background: linear-gradient(135deg, #f48800 0%, #f19e00 100%);
-        box-shadow: 0 0 20px rgb(225 123 41 / 68%);
-        animation: goldGlow 3s infinite alternate;
-    }
-
-    .link-text { flex: 1; }
-
-    .link-title {
-        font-weight: 700;
-        font-size: 1.1rem;
-        margin-bottom: 4px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .live-dot {
-        height: 8px; width: 8px;
-        background-color: #43b581;
-        border-radius: 50%;
-        display: inline-block;
-        animation: pulse-green 1.6s infinite;
-        margin-top: 1px;
-        flex-shrink: 0;
-    }
-    @keyframes pulse-green {
-        0%   { box-shadow: 0 0 4px 1px #43b581, 0 0 10px 3px rgba(67,181,129,0.4); transform: scale(1); }
-        50%  { box-shadow: 0 0 10px 4px #43b581, 0 0 22px 8px rgba(67,181,129,0.7); transform: scale(1.15); }
-        100% { box-shadow: 0 0 4px 1px #43b581, 0 0 10px 3px rgba(67,181,129,0.4); transform: scale(1); }
-    }
-
-    .vip-star {
-        display: inline-flex; align-items: center;
-        animation: spinStar 4s linear infinite, starGlow 2s ease-in-out infinite;
-        transform-origin: center;
-    }
-    @keyframes spinStar {
-        from { transform: rotate(0deg); }
-        to   { transform: rotate(360deg); }
-    }
-    @keyframes starGlow {
-        0%, 100% { filter: drop-shadow(0 0 5px #ffe066) drop-shadow(0 0 12px #ffaa00); }
-        50%       { filter: drop-shadow(0 0 12px #fff176) drop-shadow(0 0 28px #ffcc00) drop-shadow(0 0 40px rgba(255,200,0,0.5)); }
-    }
-
-    .member-count {
-        display: block;
-        font-size: 0.75rem;
-        color: #ccc;
-        margin-bottom: 4px;
-        font-weight: 400;
-    }
-    .member-count b { color: white; font-weight: 700; }
-
-    .badge-pill {
-        font-size: 0.6rem;
-        padding: 2px 8px;
-        border-radius: 4px;
-        text-transform: uppercase;
-        font-weight: 800;
-        letter-spacing: 0.5px;
-    }
-    .badge-pill.free {
-        background: #df30f2;
-        color: #fff;
-        animation: pillPulse 2s infinite;
-        font-weight: 600;
-    }
-    .badge-pill.premium {
-        background: linear-gradient(279deg, #f89501, #e6b000, #f87e01);
-        color: #000;
-        font-weight: 700;
-    }
-
-    .link-desc {
-        font-size: 0.85rem;
-        color: rgb(255 255 255 / 70%);
-        line-height: 1.3;
-        font-weight: 400;
-    }
-
-    .arrow-icon {
-        opacity: 0.5;
-        transition: 0.3s;
-        flex-shrink: 0;
-    }
-    .link:hover .arrow-icon {
-        opacity: 1;
-        transform: translateX(5px);
-        color: var(--primary);
-    }
-    .link-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .vip-bg i {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.7rem;
-        line-height: 1;
-        width: 100%;
-        height: 100%;
-    }
-
-    footer {
-        margin-top: 4rem;
-        text-align: center;
-        opacity: 0.6;
-        font-size: 0.8rem;
-        animation: fadeIn 2s ease;
-    }
-    footer p { margin-bottom: 5px; }
-
-    @keyframes slideDown  { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    @keyframes fadeInUp   { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    @keyframes fadeIn     { from { opacity: 0; } to { opacity: 0.6; } }
-
-    @media (min-width: 600px) {
-        .container { max-width: 560px; }
-    }
-    @media (min-width: 900px) {
-        .container { max-width: 700px; }
-        .link { padding: 1.5rem 1.8rem; gap: 1.4rem; }
-        .link-icon { width: 68px; height: 68px; border-radius: 15px; font-size: 2rem; }
-        .link-title { font-size: 1.25rem; }
-        .link-desc { font-size: 0.95rem; }
-        .logo-text { font-size: 5rem; }
-        .logo-img { max-width: 340px; }
-    }
-    @media (min-width: 1200px) {
-        .container { max-width: 860px; }
-        .link { padding: 1.8rem 2.2rem; gap: 1.6rem; border-radius: 22px; }
-        .link-icon { width: 76px; height: 76px; border-radius: 17px; font-size: 2.2rem; }
-        .link-title { font-size: 1.4rem; }
-        .link-desc { font-size: 1rem; }
-        .logo-text { font-size: 5rem; }
-        .logo-img { max-width: 400px; }
-        .tagline { font-size: 1.2rem; padding: 7px 22px; }
-    }
-    @media (max-width: 480px) {
-        .logo-text { font-size: 3rem; }
-        .container { width: 95%; }
-    }
-    .logo-text {
-        text-shadow: 0 0 20px rgb(255 106 0 / 52%), 0 0 40px rgba(255, 106, 0, 0.4), 0 0 80px rgba(255, 106, 0, 0.2);
-    }
+@media(max-width:991px){
+  .section.link-section{padding-bottom:40px}
+}
+@media(max-width:479px){
+  .profile-bg-hero-wrapper{height:50px}
+  .profile-image-wrapper{width:125px;height:125px}
+  .profile-info-top-wrapper{margin-top:-62px}
+  .link-button{padding-left:70px}
+  .link-icon-float{width:50px;height:50px;left:10px}
+}
 </style>
 </head>
-
 <body>
 
-    <div class="video-background">
-        <video id="bg-video" autoplay muted loop playsinline>
-            <!-- src wordt ingesteld via JavaScript -->
-        </video>
+<div class="modal-overlay" id="share-modal" onclick="handleOverlay(event)">
+  <div class="modal-card">
+    <div class="modal-header">
+      <span>Share</span>
+      <button class="modal-close" onclick="closeModal()">
+        <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
     </div>
 
-    <div class="overlay"></div>
+    <div class="share-options">
 
-    <div class="container">
-        <header>
-            <img
-                src="logo.png"
-                alt="NotMyLeaks"
-                class="logo-img"
-                onerror="this.style.display='none'; document.querySelector('.logo-text').classList.add('show')"
-            />
-            <h1 class="logo-text">NOTMYLEAKS</h1>
+      <a class="share-option" onclick="shareVia('x');return false" href="#">
+        <div class="share-option-left">
+          <div class="share-icon" style="background:#1e1e1f">
+            <img src="/twitter.png" alt="Twitter" style="width:34px;height:34px;border-radius:50%;object-fit:cover">
+          </div>
+          Twitter / X
+        </div>
+        <svg class="share-arrow" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
 
-            <div class="tagline-container">
-                <div class="tagline">
-                    🎮 #1 Gaming Mod Menu's
-                </div>
+      <a class="share-option" href="https://instagram.com/notmyleaks" target="_blank">
+        <div class="share-option-left">
+          <div class="share-icon" style="background:#1e1e1f">
+            <img src="/instagram.png" alt="Instagram" style="width:34px;height:34px;border-radius:50%;object-fit:cover">
+          </div>
+          Instagram
+        </div>
+        <svg class="share-arrow" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+
+      <a class="share-option" href="https://t.me/notmyleaksx" target="_blank">
+        <div class="share-option-left">
+          <div class="share-icon" style="background:#1e1e1f">
+            <img src="/telegram.png" alt="Telegram" style="width:34px;height:34px;border-radius:50%;object-fit:cover">
+          </div>
+          Telegram
+        </div>
+        <svg class="share-arrow" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+
+      <a class="share-option" onclick="shareVia('whatsapp');return false" href="#">
+        <div class="share-option-left">
+          <div class="share-icon" style="background:#1e1e1f">
+            <img src="/whatsapp.png" alt="WhatsApp" style="width:34px;height:34px;border-radius:50%;object-fit:cover">
+          </div>
+          WhatsApp
+        </div>
+        <svg class="share-arrow" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+
+      <a class="share-option" href="https://discord.gg/notmyleaks" target="_blank">
+        <div class="share-option-left">
+          <div class="share-icon" style="background:#1e1e1f">
+            <img src="/discord.png" alt="Discord" style="width:34px;height:34px;border-radius:50%;object-fit:cover">
+          </div>
+          Discord
+        </div>
+        <svg class="share-arrow" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+
+    </div>
+
+    <div class="copy-row">
+      <button class="copy-btn" onclick="copyLink()">Copy</button>
+      <span class="copy-url">link.notmyleaks.com</span>
+      <div class="copy-done" id="copy-done">
+        <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Copied!
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="page-wrapper">
+  <div class="profile-bg-hero-wrapper">
+    <button class="page-share" onclick="openModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+      </svg>
+    </button>
+  </div>
+
+  <div style="width:100%;padding:70px 0 0">
+    <div class="section-container">
+      <div class="profile-info-wrapper">
+        <div class="profile-info-top-wrapper">
+          <div class="profile-image-wrapper">
+            <img src="/notmyleaks.png" class="profile-image" alt="NotMyLeaks">
+          </div>
+        </div>
+        <div class="profile-info-bottom-wrapper">
+          <h1 class="profile-name">NotMyLeaks</h1>
+          <p class="profile-bio">#1 Best Place for Mod Menus, Cheats & Game Accounts</p>
+        </div>
+        <div class="contact-button-wrapper">
+          <a href="https://notmyleaks.com/pages/contact" target="_blank" class="contact-button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Contact
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section link-section">
+    <div class="section-container">
+      <div class="profile-link-wrapper">
+
+        <div class="link-item-wrapper">
+          <a href="https://notmyleaks.com" rel="nofollow" class="link-button" target="_blank">
+            <div class="link-icon-float" style="box-shadow:0 8px 18px -4px rgba(0,0,0,.7);background:#1e1e1f">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             </div>
-        </header>
-
-        <div class="links">
-
-            <!-- CARD 1: Telegram -->
-            <a href="https://discord.gg/notmyleaks" target="_blank" rel="noopener noreferrer" class="link">
-                <div class="link-icon discord-bg">
-                    <!-- Official Discord logo -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 127.14 96.36" fill="white">
-                        <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
-                    </svg>
-                </div>
-                <div class="link-text">
-                    <div class="link-title">
-                        Join Discord
-                        <span class="live-dot"></span>
-                    </div>
-                    <div class="link-desc">Daily Game Updates, Cheats, Mods &amp; Exclusive Gaming Content WorldWide</div>
-                </div>
-            </a>
-
-            <!-- CARD 2: Best Menus -->
-            <a href="https://notmyleaks.com/collections" target="_blank" rel="noopener noreferrer" class="link">
-                <div class="link-icon vip-bg">
-                    <i class="fas fa-crown"></i>
-                </div>
-                <div class="link-text">
-                    <div class="link-title">
-                        Best Menus
-                        <span class="vip-star">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700" xmlns="http://www.w3.org/2000/svg">
-                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" stroke="#FFD700" stroke-width="1.5" stroke-linejoin="round"/>
-                            </svg>
-                        </span>
-                        <span class="badge-pill premium">Premium</span>
-                    </div>
-                    <div class="link-desc">Aimbot, ESP, Spoofers, Mod Menus & Externals. Whatever game you play</div>
-                </div>
-            </a>
-
+            <div class="link-block-text-wrapper">
+              <div class="link-name">Website</div>
+              <div class="link-url">notmyleaks.com</div>
+            </div>
+            <div class="link-arrow-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          </a>
         </div>
 
+        <div class="link-item-wrapper">
+          <a href="https://discord.gg/notmyleaks" class="link-button" target="_blank" onclick="openApp(event,'discord://-/invite/notmyleaks','https://discord.gg/notmyleaks')">
+            <div class="link-icon-float" style="box-shadow:0 8px 18px -4px rgba(60,70,180,.5);background:#1e1e1f">
+              <img src="/discord.png" alt="Discord" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
+            </div>
+            <div class="link-block-text-wrapper">
+              <div class="link-name">Discord</div>
+              <div class="link-url">discord.gg/notmyleaks</div>
+            </div>
+            <div class="link-arrow-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          </a>
+        </div>
 
-        <footer>
-            <p>© 2026 NotMyLeaks • All rights reserved</p>
-            <small style="opacity:0.7;">Disclaimer: All content is for educational purposes only.</small>
-        </footer>
+        <div class="link-item-wrapper">
+          <a href="https://youtube.com/@notmyleaks" class="link-button" target="_blank" onclick="openApp(event,'vnd.youtube://www.youtube.com/@notmyleaks','https://youtube.com/@notmyleaks')">
+            <div class="link-icon-float" style="box-shadow:0 8px 18px -4px rgba(180,20,10,.5);background:#1e1e1f">
+              <img src="/youtube.png" alt="YouTube" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
+            </div>
+            <div class="link-block-text-wrapper">
+              <div class="link-name">YouTube</div>
+              <div class="link-url">youtube.com/@notmyleaks</div>
+            </div>
+            <div class="link-arrow-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          </a>
+        </div>
+
+        <div class="link-item-wrapper">
+          <a href="https://tiktok.com/@notmyleaks.com" class="link-button" target="_blank" onclick="openApp(event,'snssdk1233://user/profile/notmyleaks.com','https://tiktok.com/@notmyleaks.com')">
+            <div class="link-icon-float" style="box-shadow:0 8px 18px -4px rgba(0,0,0,.7);background:#1e1e1f">
+              <img src="/tiktok.png" alt="TikTok" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
+            </div>
+            <div class="link-block-text-wrapper">
+              <div class="link-name">TikTok</div>
+              <div class="link-url">tiktok.com/@notmyleaks.com</div>
+            </div>
+            <div class="link-arrow-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          </a>
+        </div>
+
+        <div class="link-item-wrapper">
+          <a href="https://instagram.com/notmyleaks" class="link-button" target="_blank" onclick="openApp(event,'instagram://user?username=notmyleaks','https://instagram.com/notmyleaks')">
+            <div class="link-icon-float" style="box-shadow:0 8px 18px -4px rgba(160,50,70,.5);background:#1e1e1f">
+              <img src="/instagram.png" alt="Instagram" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
+            </div>
+            <div class="link-block-text-wrapper">
+              <div class="link-name">Instagram</div>
+              <div class="link-url">instagram.com/notmyleaks</div>
+            </div>
+            <div class="link-arrow-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          </a>
+        </div>
+
+        <div class="link-item-wrapper">
+          <a href="https://x.com/notmyleaks" class="link-button" target="_blank" onclick="openApp(event,'twitter://user?screen_name=notmyleaks','https://x.com/notmyleaks')">
+            <div class="link-icon-float" style="box-shadow:0 8px 18px -4px rgba(0,0,0,.8);background:#1e1e1f">
+              <img src="/twitter.png" alt="Twitter" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
+            </div>
+            <div class="link-block-text-wrapper">
+              <div class="link-name">Twitter / X</div>
+              <div class="link-url">x.com/notmyleaks</div>
+            </div>
+            <div class="link-arrow-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          </a>
+        </div>
+
+        <div class="link-item-wrapper">
+          <a href="https://t.me/notmyleaksx" class="link-button" target="_blank" onclick="openApp(event,'tg://resolve?domain=notmyleaksx','https://t.me/notmyleaksx')">
+            <div class="link-icon-float" style="box-shadow:0 8px 18px -4px rgba(8,120,180,.5);background:#1e1e1f">
+              <img src="/telegram.png" alt="Telegram" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
+            </div>
+            <div class="link-block-text-wrapper">
+              <div class="link-name">Telegram</div>
+              <div class="link-url">t.me/notmyleaksx</div>
+            </div>
+            <div class="link-arrow-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          </a>
+        </div>
+
+      </div>
     </div>
+  </div>
 
-    <script>
-        lucide.createIcons();
+  <div class="page-footer">
+    <p class="footer-copyright">© 2026 NotMyLeaks • All rights reserved</p>
+    <p class="footer-disclaimer">Disclaimer: All content is for educational purposes only.</p>
+  </div>
+</div>
 
-        // ─── VIDEO SWITCHER ───────────────────────────────────────────────
-        // Verander de bestandsnamen hieronder naar jouw eigen video's:
-        var MOBILE_VIDEO  = 'background.mp4';      // video voor mobiel  (<= 768px)
-        var DESKTOP_VIDEO = 'background-desktop.mp4'; // video voor desktop (> 768px)
+<script>
+function openApp(e, deepLink, fallback) {
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  if (!isMobile) return;
+  e.preventDefault();
+  const start = Date.now();
+  window.location = deepLink;
+  setTimeout(() => {
+    if (Date.now() - start < 1500) {
+      window.open(fallback, '_blank');
+    }
+  }, 1200);
+}
 
-        function setVideo() {
-            var video = document.getElementById('bg-video');
-            var isMobile = window.innerWidth <= 768;
-            var newSrc = isMobile ? MOBILE_VIDEO : DESKTOP_VIDEO;
+function openModal(){
+  const m=document.getElementById('share-modal');
+  m.style.display='flex';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>m.classList.add('open')));
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  const m=document.getElementById('share-modal');
+  m.classList.remove('open');
+  setTimeout(()=>{m.style.display='none';document.body.style.overflow='';},280);
+}
+function handleOverlay(e){
+  if(e.target===document.getElementById('share-modal')) closeModal();
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal();});
 
-            // Alleen vervangen als de src echt anders is (voorkomt onnodig herladen)
-            var currentSrc = video.querySelector('source') ? video.querySelector('source').src : '';
-            if (currentSrc.endsWith(newSrc)) return;
+function shareVia(p){
+  const url=encodeURIComponent('https://link.notmyleaks.com');
+  const t=encodeURIComponent('NotMyLeaks');
+  const map={
+    x:`https://twitter.com/intent/tweet?url=${url}&text=${t}`,
+    whatsapp:`https://api.whatsapp.com/send?text=${t}%20${url}`
+  };
+  if(map[p]) window.open(map[p],'_blank');
+}
 
-            // Huidige source verwijderen en nieuwe instellen
-            video.innerHTML = '<source src="' + newSrc + '" type="video/mp4">';
-            video.load();
-            video.play();
-        }
-
-        // Direct bij laden
-        setVideo();
-
-        // Hercheck bij resize (bijv. venster vergroten/verkleinen of orientatiewissel)
-        var resizeTimer;
-        window.addEventListener('resize', function () {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(setVideo, 300);
-        });
-        // ─────────────────────────────────────────────────────────────────
-
-        // Tilt effect op cards
-        var cards = document.querySelectorAll('.link');
-        cards.forEach(function(card) {
-            card.addEventListener('mousemove', function(e) {
-                var rect = card.getBoundingClientRect();
-                var x = e.clientX - rect.left;
-                var y = e.clientY - rect.top;
-                card.style.setProperty('--x', x + 'px');
-                card.style.setProperty('--y', y + 'px');
-            });
-        });
-    </script>
-
-</body>
-</html>
+function copyLink(){
+  navigator.clipboard.writeText('https://link.notmyleaks.com').then(()=>{
+    const d=document.getElementById('copy-done');
+    d.classList.add('show');
+    setTimeout(()=>d.classList.remove('show'),2000);
+  });
+}
+</script>
+</body></html>
