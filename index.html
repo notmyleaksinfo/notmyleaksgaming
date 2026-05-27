@@ -186,35 +186,35 @@ h1{margin:0}
       </button>
     </div>
     <div class="share-options">
-      <a class="share-option" onclick="shareVia('x');return false" href="#">
+      <a class="share-option" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Flink.notmyleaks.com&text=NotMyLeaks" onclick="openExternal(event,'https://twitter.com/intent/tweet?url=https%3A%2F%2Flink.notmyleaks.com&text=NotMyLeaks')">
         <div class="share-option-left">
           <div class="share-icon" style="background:#1e1e1f"><img src="twitter.png" alt="Twitter" style="width:34px;height:34px;border-radius:50%;object-fit:cover"></div>
           Twitter / X
         </div>
         <svg class="share-arrow" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
       </a>
-      <a class="share-option" href="https://instagram.com/notmyleaks" target="_blank">
+      <a class="share-option" href="https://instagram.com/notmyleaks" onclick="openApp(event,'instagram://user?username=notmyleaks','https://instagram.com/notmyleaks')">
         <div class="share-option-left">
           <div class="share-icon" style="background:#1e1e1f"><img src="instagram.png" alt="Instagram" style="width:34px;height:34px;border-radius:50%;object-fit:cover"></div>
           Instagram
         </div>
         <svg class="share-arrow" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
       </a>
-      <a class="share-option" href="https://t.me/notmyleaksx" target="_blank">
+      <a class="share-option" href="https://t.me/notmyleaksx" onclick="openApp(event,'tg://resolve?domain=notmyleaksx','https://t.me/notmyleaksx')">
         <div class="share-option-left">
           <div class="share-icon" style="background:#1e1e1f"><img src="telegram.png" alt="Telegram" style="width:34px;height:34px;border-radius:50%;object-fit:cover"></div>
           Telegram
         </div>
         <svg class="share-arrow" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
       </a>
-      <a class="share-option" onclick="shareVia('whatsapp');return false" href="#">
+      <a class="share-option" href="https://api.whatsapp.com/send?text=NotMyLeaks%20https%3A%2F%2Flink.notmyleaks.com" onclick="openApp(event,'whatsapp://send?text=NotMyLeaks%20https%3A%2F%2Flink.notmyleaks.com','https://api.whatsapp.com/send?text=NotMyLeaks%20https%3A%2F%2Flink.notmyleaks.com')">
         <div class="share-option-left">
           <div class="share-icon" style="background:#1e1e1f"><img src="whatsapp.png" alt="WhatsApp" style="width:34px;height:34px;border-radius:50%;object-fit:cover"></div>
           WhatsApp
         </div>
         <svg class="share-arrow" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
       </a>
-      <a class="share-option" href="https://discord.gg/notmyleaks" target="_blank">
+      <a class="share-option" href="https://discord.gg/notmyleaks" onclick="openApp(event,'discord://-/invite/notmyleaks','https://discord.gg/notmyleaks')">
         <div class="share-option-left">
           <div class="share-icon" style="background:#1e1e1f"><img src="/discord.png" alt="Discord" style="width:34px;height:34px;border-radius:50%;object-fit:cover"></div>
           Discord
@@ -442,16 +442,6 @@ function handleOverlay(e){
   if(e.target===document.getElementById('share-modal')) closeModal();
 }
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
-
-function shareVia(p){
-  var url=encodeURIComponent('https://link.notmyleaks.com');
-  var t=encodeURIComponent('NotMyLeaks');
-  var map={
-    x:'https://twitter.com/intent/tweet?url='+url+'&text='+t,
-    whatsapp:'https://api.whatsapp.com/send?text='+t+'%20'+url
-  };
-  if(map[p]) window.open(map[p],'_blank');
-}
 
 function copyLink(){
   var text='https://link.notmyleaks.com';
