@@ -1,869 +1,202 @@
 <!DOCTYPE html>
-<html><head>
+<html lang="en"><head>
 <meta charset="utf-8">
-<title>NotMyLeaks | Official Links</title>
-<meta property="og:title" content="NotMyLeaks — Official Links">
-<link rel="icon" type="image/png" href="notmyleaks.png">
-<link rel="apple-touch-icon" href="notmyleaks.png">
-<meta name="description" content="#1 Best Place for Mod Menus, Cheats & Game Accounts">
+<title>iOS Link Test</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0f0f10">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#0f0f10;
-  --card-bg:#181819;
-  --dark-mode-inactive:#333334;
-  --read-grey:#888889;
-  --white:#f0f0f0;
-  --font:'Poppins',sans-serif;
-}
-body{
-  background-color:var(--bg);
-  color:var(--white);
-  font-family:var(--font);
-  font-size:15px;
-  font-weight:400;
-  line-height:20px;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-}
-a{color:var(--white);text-decoration:none}
-img{max-width:100%;display:inline-block}
-h1{margin:0}
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:#0f0f10;color:#f0f0f0;padding:16px;line-height:1.5;font-size:14px}
+h1{font-size:18px;margin-bottom:6px}
+.sub{color:#888;font-size:12px;margin-bottom:14px}
+.box{background:#181819;border:1px solid #333;border-radius:12px;padding:12px;margin-bottom:10px;word-break:break-all}
+.label{color:#888;font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.val{font-size:12px}
+.tag{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;margin:2px 4px 2px 0}
+.yes{background:#1d3a24;color:#5cca7e}
+.no{background:#3a1d1d;color:#ca5c5c}
 
-.page-wrapper{flex-direction:column;min-height:100vh;display:flex;flex:1}
-
-.profile-bg-hero-wrapper{
-  background-color:var(--bg);
-  height:100px;
-  position:relative;
-  flex-shrink:0;
+.btn{
+  display:flex;align-items:center;gap:12px;
+  width:100%;text-align:left;
+  background:#1e1e2a;color:#fff;
+  border:1px solid #3a3a4a;border-radius:12px;
+  padding:14px;font-size:14px;font-weight:600;
+  margin-bottom:8px;text-decoration:none;
+  cursor:pointer;font-family:inherit;
+  -webkit-appearance:none;
 }
-
-.page-share{
-  cursor:pointer;
-  background-color:rgba(255,255,255,.07);
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:42px;
-  height:42px;
-  position:absolute;
-  top:14px;
-  right:14px;
-  border:1px solid rgba(255,255,255,.1);
-  transition:background .2s;
-}
-.page-share:hover{background-color:rgba(255,255,255,.13)}
-.page-share svg{width:19px;height:19px}
-
-.section-container{
-  z-index:2;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  width:90%;
-  max-width:600px;
-  margin:0 auto;
-}
-.profile-info-wrapper{
-  background-color:var(--card-bg);
-  border-radius:16px;
-  display:flex;
-  flex-direction:column;
-  width:100%;
-  max-width:600px;
-  margin-top:0;
-  margin-left:auto;
-  margin-right:auto;
-  padding-top:0;
-  padding-bottom:26px;
-}
-.profile-info-top-wrapper{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  margin-top:-62px;
-  padding-top:0;
-}
-.profile-image-wrapper{
-  border-radius:50%;
-  width:125px;
-  height:125px;
-  overflow:hidden;
-  box-shadow:0 8px 40px rgba(0,0,0,.6);
-  border:3px solid var(--bg);
-  flex-shrink:0;
-}
-.profile-image{border-radius:50%;width:100%;height:100%;object-fit:cover;display:block}
-.profile-info-bottom-wrapper{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  width:100%;
-  max-width:420px;
-  margin:14px auto 5px;
-}
-.profile-name{
-  text-align:center;
-  font-size:28px;
-  font-weight:700;
-  line-height:1.1em;
-  letter-spacing:-.3px;
-  margin-bottom:8px;
-}
-.profile-bio{
-  text-align:center;
-  max-width:360px;
-  margin-bottom:10px;
-  color:#ebebeb;
-  font-size:14px;
-  font-weight:400;
-  line-height:1.5em;
-  padding:0 12px;
-}
-.contact-button-wrapper{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:8px;
-  padding:0 25px;
-  margin-bottom:5px;
-}
-.contact-button{
-  border:1px solid var(--dark-mode-inactive);
-  color:var(--white);
-  border-radius:50px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  padding:9px 18px;
-  font-weight:500;
-  font-size:13px;
-  transition:all .2s;
-  cursor:pointer;
-  background:none;
-  font-family:var(--font);
-  text-decoration:none;
-}
-.contact-button:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.05)}
-.contact-button svg{width:16px;height:16px;flex-shrink:0}
-
-.section.link-section{flex:1;padding-top:24px;padding-bottom:32px;width:100%}
-.profile-link-wrapper{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  width:100%;
-  max-width:600px;
-  margin:0 auto;
-  gap:9px;
-}
-.link-item-wrapper{width:100%;display:flex;flex-direction:column}
-.link-button{
-  width:100%;
-  min-height:70px;
-  color:var(--white);
-  background-color:var(--card-bg);
-  border-radius:12px;
-  display:flex;
-  align-items:center;
-  padding:11px 16px 11px 76px;
-  text-decoration:none;
-  position:relative;
-  transition:background-color .15s,transform .1s;
-  overflow:hidden;
-}
-.link-button:hover{background-color:#1e1e1f;transform:translateY(-1px)}
-.link-button:active{transform:translateY(0)}
-.link-icon-float{
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:52px;
-  height:52px;
-  position:absolute;
-  left:12px;
-  flex-shrink:0;
-  overflow:hidden;
-}
-.link-icon-float img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
-.link-block-text-wrapper{flex:1;overflow:hidden}
-.link-name{margin-bottom:2px;font-weight:600;font-size:16px;letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.link-url{color:#919191;font-size:14px;font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.link-arrow-wrapper{flex:none;display:flex;align-items:center;padding-left:8px}
-.link-arrow-wrapper svg{width:18px;height:18px;opacity:.3}
-
-.page-footer{padding:28px 20px 24px;text-align:center;flex-shrink:0}
-.footer-copyright{color:#d5d5d5;font-size:12px;font-weight:400;margin-bottom:5px}
-.footer-disclaimer{color:#d5d5d5;font-size:11px;font-weight:300}
-
-.modal-overlay{
-  z-index:1049;
-  background-color:rgba(0,0,0,.75);
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  align-items:center;
-  width:100%;
-  height:100%;
-  position:fixed;
-  inset:0;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .25s;
-}
-.modal-overlay.open{opacity:1;pointer-events:all}
-.modal-card{
-  background-color:var(--card-bg);
-  border-radius:18px 18px 0 0;
-  color:var(--white);
-  display:flex;
-  flex-direction:column;
-  width:100%;
-  max-width:600px;
-  padding-bottom:env(safe-area-inset-bottom, 16px);
-  transform:translateY(100%);
-  transition:transform .28s cubic-bezier(.22,.68,0,1.2);
-  max-height:90vh;
-  overflow-y:auto;
-}
-.modal-overlay.open .modal-card{transform:translateY(0)}
-.modal-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 18px 14px;
-  font-size:17px;
-  font-weight:700;
-  position:sticky;
-  top:0;
-  background:var(--card-bg);
-  z-index:1;
-}
-.modal-close{
-  cursor:pointer;
-  width:28px;height:28px;
-  background:rgba(255,255,255,.07);
-  border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  border:none;
-  transition:background .15s;
-}
-.modal-close:hover{background:rgba(255,255,255,.13)}
-.modal-close svg{width:14px;height:14px;stroke:#fff;fill:none}
-
-.share-options{padding:0 14px;display:flex;flex-direction:column;gap:5px}
-.share-option{
-  background-color:var(--bg);
-  border-radius:10px;
-  cursor:pointer;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:13px 14px;
-  transition:background .12s;
-  border:none;
-  color:var(--white);
-  font-family:var(--font);
-  font-size:14px;
-  font-weight:500;
-  width:100%;
-  text-decoration:none;
-}
-.share-option:hover{background:#1a1a1b}
-.share-option-left{display:flex;align-items:center;gap:12px}
-.share-icon{
-  width:34px;height:34px;
-  border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-}
-.share-icon svg{width:17px;height:17px}
-.share-arrow{width:16px;height:16px;opacity:.3}
-
-.copy-row{
-  display:flex;align-items:center;
-  background-color:var(--bg);
-  border-radius:10px;
-  overflow:hidden;
-  margin:8px 14px 16px;
-  height:52px;
-  position:relative;
-}
-.copy-btn{
-  padding:0 16px;
-  background:rgba(255,255,255,.08);
-  border:none;
-  border-right:1px solid var(--dark-mode-inactive);
-  color:var(--white);
-  font-family:var(--font);
-  font-size:12px;font-weight:700;
-  cursor:pointer;
-  white-space:nowrap;
-  height:100%;
-  text-transform:uppercase;letter-spacing:.4px;
-  transition:background .12s;
-}
-.copy-btn:hover{background:rgba(255,255,255,.14)}
-.copy-url{
-  flex:1;padding:0 14px;
-  font-size:12px;color:#cfcfcf;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  font-family:var(--font);
-}
-.copy-done{
-  position:absolute;inset:0;
-  background:var(--bg);border-radius:10px;
-  display:none;align-items:center;justify-content:center;
-  font-size:13px;font-weight:600;color:#5cca7e;gap:7px;
-}
-.copy-done.show{display:flex}
-.copy-done svg{stroke:#5cca7e;fill:none;width:14px;height:14px}
-
-/* ===== In-app browser banner ===== */
-.iab-banner{
-  display:none;
-  align-items:center;
-  gap:10px;
-  background:linear-gradient(90deg,#2a2030,#241d2e);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:12px;
-  margin:0 auto 6px;
-  width:90%;
-  max-width:600px;
-  padding:11px 14px;
-  font-size:12.5px;
-  line-height:1.4em;
-  color:#f0f0f0;
-}
-.iab-banner.show{display:flex}
-.iab-banner .iab-ico{
+.btn:active{background:#252533}
+.btn .num{
   width:30px;height:30px;flex-shrink:0;
-  border-radius:50%;
-  background:rgba(255,255,255,.08);
-  display:flex;align-items:center;justify-content:center;
-}
-.iab-banner .iab-ico svg{width:16px;height:16px;stroke:#fff;fill:none}
-.iab-banner b{font-weight:700}
-
-/* ===== "Open in browser" instruction sheet (iOS fallback) ===== */
-.instruct-card{display:flex;flex-direction:column}
-.instruct-body{padding:4px 20px 18px;display:flex;flex-direction:column;gap:16px}
-.instruct-intro{font-size:14px;line-height:1.5em;color:#dcdcdc}
-.instruct-step{display:flex;align-items:flex-start;gap:13px}
-.instruct-num{
-  width:26px;height:26px;flex-shrink:0;
-  border-radius:50%;
-  background:rgba(255,255,255,.1);
+  border-radius:50%;background:#2a2a3a;
   display:flex;align-items:center;justify-content:center;
   font-size:13px;font-weight:700;
 }
-.instruct-text{font-size:14px;line-height:1.45em;padding-top:2px}
-.instruct-text .dots{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:24px;height:20px;vertical-align:middle;
-  background:rgba(255,255,255,.12);border-radius:5px;
-  font-weight:800;letter-spacing:1px;margin:0 2px;
-}
-.instruct-copied{
-  display:flex;align-items:center;gap:8px;
-  background:rgba(92,202,126,.12);
-  border:1px solid rgba(92,202,126,.35);
-  border-radius:10px;
-  padding:11px 14px;
-  font-size:13px;font-weight:600;color:#5cca7e;
-}
-.instruct-copied svg{stroke:#5cca7e;fill:none;width:15px;height:15px;flex-shrink:0}
+.btn .txt{flex:1}
+.btn .small{display:block;font-size:11px;color:#888;font-weight:400;margin-top:2px}
 
-@media(max-width:991px){
-  .section.link-section{padding-bottom:40px}
-}
-@media(max-width:479px){
-  .profile-bg-hero-wrapper{height:50px}
-  .profile-image-wrapper{width:125px;height:125px}
-  .profile-info-top-wrapper{margin-top:-62px}
-  .link-button{padding-left:70px}
-  .link-icon-float{width:50px;height:50px;left:10px}
+#log{background:#000;border-radius:10px;padding:10px;font-family:ui-monospace,Menlo,monospace;font-size:11px;min-height:80px;max-height:240px;overflow-y:auto;white-space:pre-wrap;word-break:break-all}
+.log-line{padding:3px 0;border-bottom:1px solid #1a1a1a;line-height:1.4em}
+.log-line.hit{color:#5cca7e}
+.log-line.miss{color:#ca5c5c}
+
+.clear-btn{
+  background:none;border:1px solid #333;color:#888;
+  border-radius:8px;padding:5px 10px;font-size:11px;
+  cursor:pointer;float:right;font-family:inherit;
 }
 </style>
-</head>
-<body>
+</head><body>
 
-<!-- ===== Share modal ===== -->
-<div class="modal-overlay" id="share-modal" onclick="handleOverlay(event)">
-  <div class="modal-card">
-    <div class="modal-header">
-      <span>Share</span>
-      <button class="modal-close" onclick="closeModal()">
-        <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
+<h1>🍎 iOS Webview Test</h1>
+<p class="sub">Open this from TikTok. Tap each button. The log shows what happened.</p>
 
-    <div class="share-options">
-
-      <a class="share-option" onclick="shareVia('x');return false" href="#">
-        <div class="share-option-left">
-          <div class="share-icon" style="background:#1e1e1f">
-            <img src="twitter.png" alt="Twitter" style="width:34px;height:34px;border-radius:50%;object-fit:cover">
-          </div>
-          Twitter / X
-        </div>
-        <svg class="share-arrow" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-      </a>
-
-      <a class="share-option" href="https://instagram.com/notmyleaks" target="_blank">
-        <div class="share-option-left">
-          <div class="share-icon" style="background:#1e1e1f">
-            <img src="instagram.png" alt="Instagram" style="width:34px;height:34px;border-radius:50%;object-fit:cover">
-          </div>
-          Instagram
-        </div>
-        <svg class="share-arrow" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-      </a>
-
-      <a class="share-option" href="https://t.me/notmyleaksx" target="_blank">
-        <div class="share-option-left">
-          <div class="share-icon" style="background:#1e1e1f">
-            <img src="telegram.png" alt="Telegram" style="width:34px;height:34px;border-radius:50%;object-fit:cover">
-          </div>
-          Telegram
-        </div>
-        <svg class="share-arrow" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-      </a>
-
-      <a class="share-option" onclick="shareVia('whatsapp');return false" href="#">
-        <div class="share-option-left">
-          <div class="share-icon" style="background:#1e1e1f">
-            <img src="whatsapp.png" alt="WhatsApp" style="width:34px;height:34px;border-radius:50%;object-fit:cover">
-          </div>
-          WhatsApp
-        </div>
-        <svg class="share-arrow" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-      </a>
-
-      <a class="share-option" href="https://discord.gg/notmyleaks" target="_blank">
-        <div class="share-option-left">
-          <div class="share-icon" style="background:#1e1e1f">
-            <img src="/discord.png" alt="Discord" style="width:34px;height:34px;border-radius:50%;object-fit:cover">
-          </div>
-          Discord
-        </div>
-        <svg class="share-arrow" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-      </a>
-
-    </div>
-
-    <div class="copy-row">
-      <button class="copy-btn" onclick="copyLink()">Copy</button>
-      <span class="copy-url">link.notmyleaks.com</span>
-      <div class="copy-done" id="copy-done">
-        <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        Copied!
-      </div>
-    </div>
-
-  </div>
+<div class="box">
+  <div class="label">User-Agent</div>
+  <div class="val" id="ua"></div>
 </div>
 
-<!-- ===== iOS "Open in browser" instruction sheet ===== -->
-<div class="modal-overlay" id="instruct-modal" onclick="handleInstructOverlay(event)">
-  <div class="modal-card instruct-card">
-    <div class="modal-header">
-      <span>Open in browser</span>
-      <button class="modal-close" onclick="closeInstruct()">
-        <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-    <div class="instruct-body">
-      <p class="instruct-intro">This app blocks opening external links directly. Open the page in your own browser in 2 steps:</p>
-
-      <div class="instruct-step">
-        <div class="instruct-num">1</div>
-        <div class="instruct-text">Tap the <span class="dots">···</span> menu in the top-right corner of the screen.</div>
-      </div>
-
-      <div class="instruct-step">
-        <div class="instruct-num">2</div>
-        <div class="instruct-text">Tap <b>"Open in browser"</b> (or <b>"Open in Safari/Chrome"</b>). The site loads there normally.</div>
-      </div>
-
-      <div class="instruct-copied">
-        <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        <span id="instruct-copied-text">Link copied — paste it into a browser to continue.</span>
-      </div>
-    </div>
-  </div>
+<div class="box">
+  <div class="label">Detection</div>
+  <div id="detect"></div>
 </div>
 
-<div class="page-wrapper">
-  <div class="profile-bg-hero-wrapper">
-    <button class="page-share" onclick="openModal()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-      </svg>
-    </button>
+<!-- Five different methods, each a real anchor tag so the tap is "user-initiated" -->
+
+<a class="btn" href="https://www.notmyleaks.com" target="_blank" onclick="track(1,'plain https + target=_blank')">
+  <div class="num">1</div>
+  <div class="txt">Plain https link (target=_blank)
+    <span class="small">href = https://www.notmyleaks.com</span>
   </div>
+</a>
 
-  <!-- In-app browser banner (shown only inside TikTok/IG/etc webview) -->
-  <div class="iab-banner" id="iab-banner">
-    <div class="iab-ico">
-      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-    </div>
-    <div>For the full site, tap <b>···</b> top-right → <b>Open in browser</b>.</div>
+<a class="btn" href="x-safari-https://www.notmyleaks.com" onclick="track(2,'x-safari-https scheme')">
+  <div class="num">2</div>
+  <div class="txt">x-safari-https:// scheme
+    <span class="small">Undocumented Safari URL scheme</span>
   </div>
+</a>
 
-  <div style="width:100%;padding:14px 0 0">
-    <div class="section-container">
-      <div class="profile-info-wrapper">
-        <div class="profile-info-top-wrapper">
-          <div class="profile-image-wrapper">
-            <img src="notmyleaks.png" class="profile-image" alt="NotMyLeaks">
-          </div>
-        </div>
-        <div class="profile-info-bottom-wrapper">
-          <h1 class="profile-name">NotMyLeaks</h1>
-          <p class="profile-bio">#1 Best Place for Mod Menus, Cheats & Game Accounts</p>
-        </div>
-        <div class="contact-button-wrapper">
-          <a href="https://notmyleaks.com/pages/contact" class="contact-button" onclick="openWebsite(event,'https://notmyleaks.com/pages/contact')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            Contact
-          </a>
-        </div>
-      </div>
-    </div>
+<a class="btn" href="x-web-search://?notmyleaks.com" onclick="track(3,'x-web-search scheme')">
+  <div class="num">3</div>
+  <div class="txt">x-web-search:// scheme
+    <span class="small">Forces Safari with a search query</span>
   </div>
+</a>
 
-  <div class="section link-section">
-    <div class="section-container">
-      <div class="profile-link-wrapper">
-
-        <div class="link-item-wrapper">
-          <a href="https://www.notmyleaks.com" class="link-button" onclick="openWebsite(event,'https://www.notmyleaks.com')">
-            <div class="link-icon-float" style="box-shadow:0 8px 18px -4px rgba(0,0,0,.7);background:#1e1e1f">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </div>
-            <div class="link-block-text-wrapper">
-              <div class="link-name">Website</div>
-              <div class="link-url">notmyleaks.com</div>
-            </div>
-            <div class="link-arrow-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </div>
-          </a>
-        </div>
-
-        <div class="link-item-wrapper">
-          <a href="https://discord.gg/notmyleaks" class="link-button" target="_blank" onclick="openApp(event,'discord://-/invite/notmyleaks','https://discord.gg/notmyleaks')">
-            <div class="link-icon-float" style="box-shadow:0 8px 18px -4px rgba(60,70,180,.5);background:#1e1e1f">
-              <img src="discord.png" alt="Discord" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
-            </div>
-            <div class="link-block-text-wrapper">
-              <div class="link-name">Discord</div>
-              <div class="link-url">discord.gg/notmyleaks</div>
-            </div>
-            <div class="link-arrow-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </div>
-          </a>
-        </div>
-
-        <div class="link-item-wrapper">
-          <a href="https://youtube.com/@notmyleaks" class="link-button" target="_blank" onclick="openApp(event,'vnd.youtube://www.youtube.com/@notmyleaks','https://youtube.com/@notmyleaks')">
-            <div class="link-icon-float" style="box-shadow:0 8px 18px -4px rgba(180,20,10,.5);background:#1e1e1f">
-              <img src="youtube.png" alt="YouTube" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
-            </div>
-            <div class="link-block-text-wrapper">
-              <div class="link-name">YouTube</div>
-              <div class="link-url">youtube.com/@notmyleaks</div>
-            </div>
-            <div class="link-arrow-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </div>
-          </a>
-        </div>
-
-        <div class="link-item-wrapper">
-          <a href="https://tiktok.com/@notmyleaks.com" class="link-button" target="_blank" onclick="openApp(event,'snssdk1233://user/profile/notmyleaks.com','https://tiktok.com/@notmyleaks.com')">
-            <div class="link-icon-float" style="box-shadow:0 8px 18px -4px rgba(0,0,0,.7);background:#1e1e1f">
-              <img src="tiktok.png" alt="TikTok" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
-            </div>
-            <div class="link-block-text-wrapper">
-              <div class="link-name">TikTok</div>
-              <div class="link-url">tiktok.com/@notmyleaks.com</div>
-            </div>
-            <div class="link-arrow-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </div>
-          </a>
-        </div>
-
-        <div class="link-item-wrapper">
-          <a href="https://instagram.com/notmyleaks" class="link-button" target="_blank" onclick="openApp(event,'instagram://user?username=notmyleaks','https://instagram.com/notmyleaks')">
-            <div class="link-icon-float" style="box-shadow:0 8px 18px -4px rgba(160,50,70,.5);background:#1e1e1f">
-              <img src="instagram.png" alt="Instagram" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
-            </div>
-            <div class="link-block-text-wrapper">
-              <div class="link-name">Instagram</div>
-              <div class="link-url">instagram.com/notmyleaks</div>
-            </div>
-            <div class="link-arrow-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </div>
-          </a>
-        </div>
-
-        <div class="link-item-wrapper">
-          <a href="https://x.com/notmyleaks" class="link-button" target="_blank" onclick="openApp(event,'twitter://user?screen_name=notmyleaks','https://x.com/notmyleaks')">
-            <div class="link-icon-float" style="box-shadow:0 8px 18px -4px rgba(0,0,0,.8);background:#1e1e1f">
-              <img src="twitter.png" alt="Twitter" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
-            </div>
-            <div class="link-block-text-wrapper">
-              <div class="link-name">Twitter / X</div>
-              <div class="link-url">x.com/notmyleaks</div>
-            </div>
-            <div class="link-arrow-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </div>
-          </a>
-        </div>
-
-        <div class="link-item-wrapper">
-          <a href="https://t.me/notmyleaksx" class="link-button" target="_blank" onclick="openApp(event,'tg://resolve?domain=notmyleaksx','https://t.me/notmyleaksx')">
-            <div class="link-icon-float" style="box-shadow:0 8px 18px -4px rgba(8,120,180,.5);background:#1e1e1f">
-              <img src="telegram.png" alt="Telegram" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
-            </div>
-            <div class="link-block-text-wrapper">
-              <div class="link-name">Telegram</div>
-              <div class="link-url">t.me/notmyleaksx</div>
-            </div>
-            <div class="link-arrow-wrapper">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </div>
-          </a>
-        </div>
-
-      </div>
-    </div>
+<a class="btn" href="googlechrome://www.notmyleaks.com" onclick="track(4,'googlechrome scheme')">
+  <div class="num">4</div>
+  <div class="txt">googlechrome:// scheme
+    <span class="small">Opens in Chrome if installed</span>
   </div>
+</a>
 
-  <div class="page-footer">
-    <p class="footer-copyright">© 2026 NotMyLeaks • All rights reserved</p>
-    <p class="footer-disclaimer">Disclaimer: All content is for educational purposes only.</p>
+<a class="btn" href="#" onclick="method5();return false">
+  <div class="num">5</div>
+  <div class="txt">window.open in new tab
+    <span class="small">JS: window.open('https://...', '_blank')</span>
   </div>
+</a>
+
+<a class="btn" href="#" onclick="method6();return false">
+  <div class="num">6</div>
+  <div class="txt">Copy link to clipboard
+    <span class="small">Tests if clipboard works in this webview</span>
+  </div>
+</a>
+
+<div class="box">
+  <div class="label">Log <button class="clear-btn" onclick="clearLog()">Clear</button></div>
+  <div id="log">Tap a button above…</div>
 </div>
 
 <script>
-/* ---------- Environment detection ---------- */
-var UA = navigator.userAgent || navigator.vendor || '';
-function isAndroid(){ return /Android/i.test(UA); }
-function isIOS(){ return /iPhone|iPad|iPod/i.test(UA); }
-// In-app / embedded browsers that trap external https links (walled gardens)
-function isInAppBrowser(){
-  return /TikTok|musical_ly|Bytedance|Instagram|FBAN|FBAV|FB_IAB|Snapchat|Line|Twitter|Pinterest/i.test(UA);
+var UA = navigator.userAgent || '';
+document.getElementById('ua').textContent = UA;
+
+function tag(label, on){
+  return '<span class="tag '+(on?'yes':'no')+'">'+label+': '+(on?'YES':'no')+'</span>';
 }
+var isAndroid = /Android/i.test(UA);
+var isIOS     = /iPhone|iPad|iPod/i.test(UA);
+var isTikTok  = /TikTok|musical_ly|Bytedance/i.test(UA);
+var isInApp   = isTikTok || /Instagram|FBAN|FBAV|FB_IAB|Snapchat|Line/i.test(UA);
 
-/* ---------- Social deep links ----------
-   In-app webviews (TikTok/IG) on iOS don't honour custom URL schemes the
-   same way Safari does, so a plain window.location often does nothing.
-   We try the app scheme, then fall back to the https page if the app
-   didn't take over (detected via the page losing visibility). */
-function openApp(e, deepLink, fallback) {
-  var isMobile = /iPhone|iPad|iPod|Android/i.test(UA);
-  if (!isMobile) return; // desktop: let the normal href open
-  e.preventDefault();
+document.getElementById('detect').innerHTML =
+  tag('iOS', isIOS) +
+  tag('Android', isAndroid) +
+  tag('TikTok webview', isTikTok) +
+  tag('In-app browser (any)', isInApp);
 
-  var didHide = false;
-  var onHide = function(){ didHide = true; };
-  document.addEventListener('visibilitychange', onHide);
-  window.addEventListener('pagehide', onHide);
-
-  // Fire the app scheme.
-  try { window.location.href = deepLink; } catch(err){}
-
-  // If the app grabbed the link, the page goes hidden and we stop.
-  // Otherwise, after a short delay, open the normal https link.
-  setTimeout(function(){
-    document.removeEventListener('visibilitychange', onHide);
-    window.removeEventListener('pagehide', onHide);
-    if (didHide || document.hidden) return; // app opened, done
-    // App not installed / scheme blocked → open the web version instead.
-    window.location.href = fallback;
-  }, 1500);
+var logEl = document.getElementById('log');
+function log(msg, cls){
+  if(logEl.textContent === 'Tap a button above…') logEl.innerHTML = '';
+  var t = new Date().toLocaleTimeString();
+  var d = document.createElement('div');
+  d.className = 'log-line' + (cls?' '+cls:'');
+  d.textContent = '['+t+'] '+msg;
+  logEl.insertBefore(d, logEl.firstChild);
 }
+function clearLog(){ logEl.innerHTML='Tap a button above…'; }
 
-/* ---------- Website / Contact (no app to deep-link into) ---------- */
-function openWebsite(e, url){
-  // Desktop or a real mobile browser: just open normally.
-  if(!isInAppBrowser()){
-    return; // default anchor behaviour handles it
-  }
-
-  e.preventDefault();
-
-  // ANDROID: push the link out of the webview into the default browser.
-  if(isAndroid()){
-    var clean = url.replace(/^https?:\/\//, '');
-    // Package-LESS intent: let Android show/pick the default browser
-    // (Chrome, Samsung Internet, etc.) instead of hard-coding Chrome,
-    // which fails on phones where com.android.chrome isn't present.
-    var intentUrl = 'intent://' + clean +
-      '#Intent;scheme=https;action=android.intent.action.VIEW;' +
-      'category=android.intent.category.BROWSABLE;' +
-      'S.browser_fallback_url=' + encodeURIComponent(url) + ';end';
-    try {
-      window.location.href = intentUrl;
-    } catch(err){
-      try { window.location.href = url; } catch(e2){}
+/* Detect whether the page leaves (= a method actually worked) */
+function watchLeave(label){
+  var t0 = Date.now();
+  var left = false;
+  var onHide = function(){
+    if(!left){
+      left = true;
+      log('  → page went HIDDEN after '+(Date.now()-t0)+'ms — '+label+' WORKED ✓','hit');
     }
-    // If after a moment we're still here, the intent was swallowed by the
-    // webview — show the copy + instructions sheet as a guaranteed fallback.
-    var t0 = Date.now();
-    setTimeout(function(){
-      if(Date.now() - t0 < 2500 && !document.hidden){
-        copyText(url, function(ok){
-          var el = document.getElementById('instruct-copied-text');
-          el.textContent = ok
-            ? 'Link copied — paste it into Chrome or a browser.'
-            : url;
-          openInstruct();
-        });
-      }
-    }, 1000);
-    return;
-  }
-
-  // iOS: there's no OFFICIAL way to leave the webview, but the undocumented
-  // x-safari-https:// scheme opens Safari on most iOS versions. We try it,
-  // and if nothing happens within ~1s (old iOS / webview blocks it) we fall
-  // back to copying the link + showing instructions. Nobody hits a dead end.
-  if(isIOS()){
-    var safariUrl = url.replace(/^https?:\/\//, 'x-safari-https://');
-    var left = false;
-    var onHide = function(){ left = true; };
-    document.addEventListener('visibilitychange', onHide, {once:true});
-    try { window.location.href = safariUrl; } catch(err){}
-
-    setTimeout(function(){
-      document.removeEventListener('visibilitychange', onHide);
-      if(left || document.hidden) return; // Safari opened — we're done
-      // Still here → scheme failed. Copy + show the manual instructions.
-      copyText(url, function(ok){
-        var t = document.getElementById('instruct-copied-text');
-        t.textContent = ok
-          ? 'Link copied — paste it into a browser to continue.'
-          : url;
-        openInstruct();
-      });
-    }, 1000);
-    return;
-  }
-
-  // Any other in-app browser: copy + instructions.
-  copyText(url, function(ok){
-    var t = document.getElementById('instruct-copied-text');
-    t.textContent = ok
-      ? 'Link copied — paste it into a browser to continue.'
-      : url;
-    openInstruct();
-  });
-}
-
-/* ---------- Clipboard helper (with fallback for old webviews) ---------- */
-function copyText(text, cb){
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text)
-      .then(function(){ cb && cb(true); })
-      .catch(function(){ legacyCopy(text, cb); });
-  } else {
-    legacyCopy(text, cb);
-  }
-}
-function legacyCopy(text, cb){
-  try {
-    var ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.opacity = '0';
-    document.body.appendChild(ta);
-    ta.focus(); ta.select();
-    var ok = document.execCommand('copy');
-    document.body.removeChild(ta);
-    cb && cb(ok);
-  } catch(err){
-    cb && cb(false);
-  }
-}
-
-/* ---------- Instruction modal (iOS) ---------- */
-function openInstruct(){
-  var m = document.getElementById('instruct-modal');
-  m.style.display = 'flex';
-  requestAnimationFrame(function(){ requestAnimationFrame(function(){ m.classList.add('open'); }); });
-  document.body.style.overflow = 'hidden';
-}
-function closeInstruct(){
-  var m = document.getElementById('instruct-modal');
-  m.classList.remove('open');
-  setTimeout(function(){ m.style.display='none'; document.body.style.overflow=''; }, 280);
-}
-function handleInstructOverlay(e){
-  if(e.target === document.getElementById('instruct-modal')) closeInstruct();
-}
-
-/* ---------- Top banner inside in-app browsers ---------- */
-document.addEventListener('DOMContentLoaded', function(){
-  if(isInAppBrowser()){
-    var b = document.getElementById('iab-banner');
-    if(b) b.classList.add('show');
-  }
-});
-
-/* ---------- Share modal ---------- */
-function openModal(){
-  var m=document.getElementById('share-modal');
-  m.style.display='flex';
-  requestAnimationFrame(function(){ requestAnimationFrame(function(){ m.classList.add('open'); }); });
-  document.body.style.overflow='hidden';
-}
-function closeModal(){
-  var m=document.getElementById('share-modal');
-  m.classList.remove('open');
-  setTimeout(function(){ m.style.display='none'; document.body.style.overflow=''; }, 280);
-}
-function handleOverlay(e){
-  if(e.target===document.getElementById('share-modal')) closeModal();
-}
-document.addEventListener('keydown', function(e){
-  if(e.key==='Escape'){ closeModal(); closeInstruct(); }
-});
-
-function shareVia(p){
-  var url=encodeURIComponent('https://link.notmyleaks.com');
-  var t=encodeURIComponent('NotMyLeaks');
-  var map={
-    x:'https://twitter.com/intent/tweet?url='+url+'&text='+t,
-    whatsapp:'https://api.whatsapp.com/send?text='+t+'%20'+url
   };
-  if(map[p]) window.open(map[p],'_blank');
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden) onHide();
+  });
+  window.addEventListener('pagehide', onHide);
+  window.addEventListener('blur', function(){
+    setTimeout(function(){ if(document.hidden) onHide(); }, 50);
+  });
+  setTimeout(function(){
+    if(!left) log('  → still here after '+(Date.now()-t0)+'ms — '+label+' did nothing','miss');
+  }, 2000);
 }
 
-function copyLink(){
-  copyText('https://link.notmyleaks.com', function(){
-    var d=document.getElementById('copy-done');
-    d.classList.add('show');
-    setTimeout(function(){ d.classList.remove('show'); }, 2000);
-  });
+function track(n, label){
+  log('TEST '+n+' tapped: '+label);
+  watchLeave(label);
+  // For anchor tags we let the default behaviour fire — don't preventDefault.
+}
+
+function method5(){
+  log('TEST 5 tapped: window.open');
+  watchLeave('window.open');
+  var w = window.open('https://www.notmyleaks.com','_blank');
+  if(!w){ log('  → window.open returned NULL — blocked','miss'); }
+  else  { log('  → window.open returned a window object'); }
+}
+
+function method6(){
+  log('TEST 6 tapped: clipboard');
+  var url='https://www.notmyleaks.com';
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){
+      log('  → clipboard API: copied ✓','hit');
+    }).catch(function(e){
+      log('  → clipboard API failed: '+e.message,'miss');
+      legacy(url);
+    });
+  } else {
+    log('  → no clipboard API, trying legacy…');
+    legacy(url);
+  }
+}
+function legacy(url){
+  try{
+    var ta=document.createElement('textarea');ta.value=url;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();
+    var ok=document.execCommand('copy');document.body.removeChild(ta);
+    log('  → legacy copy: '+(ok?'success ✓':'failed ✗'), ok?'hit':'miss');
+  }catch(e){ log('  → legacy copy error: '+e.message,'miss'); }
 }
 </script>
 </body></html>
