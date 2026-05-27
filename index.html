@@ -484,21 +484,21 @@ h1{margin:0}
       </button>
     </div>
     <div class="instruct-body">
-      <p class="instruct-intro">Deze app blokkeert het direct openen van externe links. Open de pagina in 2 stappen in je eigen browser:</p>
+      <p class="instruct-intro">This app blocks opening external links directly. Open the page in your own browser in 2 steps:</p>
 
       <div class="instruct-step">
         <div class="instruct-num">1</div>
-        <div class="instruct-text">Tik op het <span class="dots">···</span> menu rechtsboven in je scherm.</div>
+        <div class="instruct-text">Tap the <span class="dots">···</span> menu in the top-right corner of the screen.</div>
       </div>
 
       <div class="instruct-step">
         <div class="instruct-num">2</div>
-        <div class="instruct-text">Tik op <b>"Open in browser"</b> (of <b>"Open in Safari/Chrome"</b>). De site laadt daar gewoon.</div>
+        <div class="instruct-text">Tap <b>"Open in browser"</b> (or <b>"Open in Safari/Chrome"</b>). The site loads there normally.</div>
       </div>
 
       <div class="instruct-copied">
         <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        <span id="instruct-copied-text">Link gekopieerd — plak hem in een browser om door te gaan.</span>
+        <span id="instruct-copied-text">Link copied — paste it into a browser to continue.</span>
       </div>
     </div>
   </div>
@@ -519,7 +519,7 @@ h1{margin:0}
     <div class="iab-ico">
       <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
     </div>
-    <div>Voor de volledige site: tik <b>···</b> rechtsboven → <b>Open in browser</b>.</div>
+    <div>For the full site, tap <b>···</b> top-right → <b>Open in browser</b>.</div>
   </div>
 
   <div style="width:100%;padding:14px 0 0">
@@ -673,18 +673,33 @@ function isInAppBrowser(){
   return /TikTok|musical_ly|Bytedance|Instagram|FBAN|FBAV|FB_IAB|Snapchat|Line|Twitter|Pinterest/i.test(UA);
 }
 
-/* ---------- Social deep links (UNCHANGED behaviour) ---------- */
+/* ---------- Social deep links ----------
+   In-app webviews (TikTok/IG) on iOS don't honour custom URL schemes the
+   same way Safari does, so a plain window.location often does nothing.
+   We try the app scheme, then fall back to the https page if the app
+   didn't take over (detected via the page losing visibility). */
 function openApp(e, deepLink, fallback) {
   var isMobile = /iPhone|iPad|iPod|Android/i.test(UA);
   if (!isMobile) return; // desktop: let the normal href open
   e.preventDefault();
-  var start = Date.now();
-  window.location = deepLink;
+
+  var didHide = false;
+  var onHide = function(){ didHide = true; };
+  document.addEventListener('visibilitychange', onHide);
+  window.addEventListener('pagehide', onHide);
+
+  // Fire the app scheme.
+  try { window.location.href = deepLink; } catch(err){}
+
+  // If the app grabbed the link, the page goes hidden and we stop.
+  // Otherwise, after a short delay, open the normal https link.
   setTimeout(function(){
-    if (Date.now() - start < 1500) {
-      window.open(fallback, '_blank');
-    }
-  }, 1200);
+    document.removeEventListener('visibilitychange', onHide);
+    window.removeEventListener('pagehide', onHide);
+    if (didHide || document.hidden) return; // app opened, done
+    // App not installed / scheme blocked → open the web version instead.
+    window.location.href = fallback;
+  }, 1500);
 }
 
 /* ---------- Website / Contact (no app to deep-link into) ---------- */
@@ -719,7 +734,7 @@ function openWebsite(e, url){
         copyText(url, function(ok){
           var el = document.getElementById('instruct-copied-text');
           el.textContent = ok
-            ? 'Link gekopieerd — plak hem in Chrome of een browser.'
+            ? 'Link copied — paste it into Chrome or a browser.'
             : url;
           openInstruct();
         });
@@ -746,7 +761,7 @@ function openWebsite(e, url){
       copyText(url, function(ok){
         var t = document.getElementById('instruct-copied-text');
         t.textContent = ok
-          ? 'Link gekopieerd — plak hem in een browser om door te gaan.'
+          ? 'Link copied — paste it into a browser to continue.'
           : url;
         openInstruct();
       });
@@ -758,7 +773,7 @@ function openWebsite(e, url){
   copyText(url, function(ok){
     var t = document.getElementById('instruct-copied-text');
     t.textContent = ok
-      ? 'Link gekopieerd — plak hem in een browser om door te gaan.'
+      ? 'Link copied — paste it into a browser to continue.'
       : url;
     openInstruct();
   });
