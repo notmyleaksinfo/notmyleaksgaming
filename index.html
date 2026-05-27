@@ -1,194 +1,40 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html>
+<head>
 <meta charset="utf-8">
 <title>NotMyLeaks</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0f0f10">
-<meta name="robots" content="noindex">
-<link rel="icon" type="image/png" href="notmyleaks.png">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{
-  background:#0f0f10;color:#f0f0f0;
-  font-family:-apple-system,system-ui,'Segoe UI',Roboto,sans-serif;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:24px;text-align:center;min-height:100vh;
-  -webkit-tap-highlight-color:transparent;
-}
-.logo{width:90px;height:90px;border-radius:50%;margin-bottom:22px;box-shadow:0 8px 32px rgba(0,0,0,.5)}
-.spinner{
-  width:38px;height:38px;border-radius:50%;
-  border:3px solid rgba(255,255,255,.12);
-  border-top-color:#f0f0f0;
-  animation:spin .8s linear infinite;
-  margin-bottom:18px;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-.msg{font-size:15px;color:#bdbdbd;max-width:340px;line-height:1.5em}
-
-/* Fallback UI (shown only if the trick fails) */
-#fallback{display:none;width:100%;max-width:380px;animation:fadeIn .3s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
-#fallback h1{font-size:20px;font-weight:700;margin-bottom:8px}
-#fallback p{font-size:14px;color:#bdbdbd;line-height:1.5em;margin-bottom:18px}
-.step{
-  display:flex;align-items:flex-start;gap:12px;text-align:left;
-  background:#181819;border:1px solid #2a2a2c;border-radius:12px;
-  padding:13px 14px;margin-bottom:10px;
-}
-.step .n{
-  width:26px;height:26px;flex-shrink:0;border-radius:50%;
-  background:#2a2a2c;display:flex;align-items:center;justify-content:center;
-  font-size:13px;font-weight:700;
-}
-.step .t{font-size:13.5px;line-height:1.45em;padding-top:2px}
-.dots{display:inline-block;background:rgba(255,255,255,.15);border-radius:5px;padding:0 6px;font-weight:800;letter-spacing:1px}
-.copied{
-  display:flex;align-items:center;gap:8px;justify-content:center;
-  background:rgba(92,202,126,.12);border:1px solid rgba(92,202,126,.35);
-  border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600;color:#5cca7e;
-  margin-top:6px;
-}
-.copied svg{width:14px;height:14px;stroke:#5cca7e;fill:none}
-.retry{
-  display:block;margin-top:14px;width:100%;
-  background:#1e1e2a;color:#fff;border:1px solid #3a3a4a;
-  border-radius:10px;padding:12px;font-size:14px;font-weight:600;
-  cursor:pointer;font-family:inherit;
-}
-.retry:active{background:#252533}
-</style>
-</head><body>
-
-<div id="loading">
-  <img src="notmyleaks.png" class="logo" alt="NotMyLeaks" onerror="this.style.display='none'">
-  <div class="spinner"></div>
-  <div class="msg">Opening NotMyLeaks…</div>
-</div>
-
-<div id="fallback">
-  <img src="notmyleaks.png" class="logo" alt="NotMyLeaks" onerror="this.style.display='none'">
-  <h1>One more tap</h1>
-  <p>This app blocks external links. Open the site in your browser in 2 quick steps:</p>
-
-  <div class="step">
-    <div class="n">1</div>
-    <div class="t">Tap the <span class="dots">···</span> menu in the top-right corner.</div>
-  </div>
-  <div class="step">
-    <div class="n">2</div>
-    <div class="t">Tap <b>"Open in browser"</b> (or <b>"Open in Safari/Chrome"</b>).</div>
-  </div>
-
-  <div class="copied" id="copied">
-    <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-    <span>Link copied — paste into a browser</span>
-  </div>
-
-  <button class="retry" onclick="tryAgain()">Try again</button>
-</div>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="bingbot" content="noindex, nofollow">
+<meta property="og:title" content="NotMyLeaks">
+<meta property="og:description" content="#1 Best Place for Mod Menus, Cheats & Game Accounts">
+<meta property="og:url" content="https://link.notmyleaks.com">
+<meta property="og:type" content="website">
 
 <script>
-(function(){
-  var TARGET = 'https://notmyleaks.com';
-  var UA = navigator.userAgent || '';
-  var isAndroid = /Android/i.test(UA);
-  var isIOS = /iPhone|iPad|iPod/i.test(UA);
-  var isInApp = /TikTok|musical_ly|Bytedance|Instagram|FBAN|FBAV|FB_IAB|Snapchat|Line|Twitter|Pinterest/i.test(UA);
-
-  // Desktop or a real mobile browser: just go straight to the site.
-  if (!isInApp) {
-    window.location.replace(TARGET);
-    return;
-  }
-
-  // ----- IN-APP BROWSER PATH -----
-
-  var loadedAt = Date.now();
-  var fallbackShown = false;
-
-  function showFallback(){
-    if (fallbackShown) return;
-    fallbackShown = true;
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('fallback').style.display = 'flex';
-    document.getElementById('fallback').style.flexDirection = 'column';
-    document.getElementById('fallback').style.alignItems = 'center';
-    // Copy the URL so user can paste it
-    copyText(TARGET);
-  }
-
-  function copyText(text){
-    var ok = false;
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).catch(function(){ legacy(text); });
-        return;
-      }
-    } catch(e){}
-    legacy(text);
-  }
-  function legacy(text){
-    try {
-      var ta = document.createElement('textarea');
-      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
-      document.body.appendChild(ta); ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-    } catch(e){}
-  }
-
-  // Watch for the page actually leaving (= trick worked)
-  var didLeave = false;
-  function onLeave(){ didLeave = true; }
-  document.addEventListener('visibilitychange', function(){ if (document.hidden) onLeave(); });
-  window.addEventListener('pagehide', onLeave);
-  window.addEventListener('blur', function(){
-    setTimeout(function(){ if (document.hidden) onLeave(); }, 50);
-  });
-
-  function fireAndroid(){
-    var clean = TARGET.replace(/^https?:\/\//, '');
-    var intentUrl = 'intent://' + clean
-      + '#Intent;scheme=https;action=android.intent.action.VIEW;'
-      + 'category=android.intent.category.BROWSABLE;'
-      + 'S.browser_fallback_url=' + encodeURIComponent(TARGET) + ';end';
-    try { window.location.href = intentUrl; } catch(e){}
-  }
-
-  function fireIOS(){
-    // Shortcuts x-callback-url trick: call a non-existent shortcut, so the
-    // x-error URL gets opened by iOS itself — which means Safari.
-    var encoded = encodeURIComponent(TARGET);
-    var shortcutsUrl = 'shortcuts://x-callback-url/run-shortcut'
-      + '?name=nml-' + Math.random().toString(36).slice(2,10)
-      + '&x-error=' + encoded
-      + '&x-cancel=' + encoded;
-    try { window.location.href = shortcutsUrl; } catch(e){}
-  }
-
-  function attempt(){
-    didLeave = false;
-    if (isAndroid) fireAndroid();
-    else if (isIOS) fireIOS();
-    else { showFallback(); return; }
-
-    // Give the OS up to 1.5s to take over.
-    setTimeout(function(){
-      if (didLeave || document.hidden) return; // success
-      showFallback();
-    }, 1500);
-  }
-
-  // The first navigation attempt sometimes only works after a user-initiated
-  // tap on iOS (some webviews block auto-navigation). We try anyway on load,
-  // and the "Try again" button gives a user-initiated retry if needed.
-  window.tryAgain = attempt;
-
-  // Small delay so the page paints (logo + spinner) before we attempt.
-  // Also waits for clipboard permission to be sane.
-  setTimeout(attempt, 80);
-})();
+  (function() {
+    var finalLink = "https://notmyleaks.com";
+    var fallbackUrl = "https://notmyleaks.com";
+    var fallbackUrl2 = "https://notmyleaks.com";
+    if (finalLink) {
+      window.location.href = finalLink;
+    }
+    if (fallbackUrl) {
+      setTimeout(function() {
+        window.location.href = fallbackUrl;
+      }, 1000);
+    }
+    if (fallbackUrl2) {
+      setTimeout(function() {
+        window.location.href = fallbackUrl2;
+      }, 2000);
+    }
+  })();
 </script>
-</body></html>
+</head>
+<body>
+<noscript>
+<meta http-equiv="refresh" content="0;url=https://notmyleaks.com">
+</noscript>
+</body>
+</html>
