@@ -1,202 +1,194 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8">
-<title>iOS Link Test</title>
+<title>NotMyLeaks</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f0f10">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="notmyleaks.png">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
-body{background:#0f0f10;color:#f0f0f0;padding:16px;line-height:1.5;font-size:14px}
-h1{font-size:18px;margin-bottom:6px}
-.sub{color:#888;font-size:12px;margin-bottom:14px}
-.box{background:#181819;border:1px solid #333;border-radius:12px;padding:12px;margin-bottom:10px;word-break:break-all}
-.label{color:#888;font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
-.val{font-size:12px}
-.tag{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;margin:2px 4px 2px 0}
-.yes{background:#1d3a24;color:#5cca7e}
-.no{background:#3a1d1d;color:#ca5c5c}
-
-.btn{
-  display:flex;align-items:center;gap:12px;
-  width:100%;text-align:left;
-  background:#1e1e2a;color:#fff;
-  border:1px solid #3a3a4a;border-radius:12px;
-  padding:14px;font-size:14px;font-weight:600;
-  margin-bottom:8px;text-decoration:none;
-  cursor:pointer;font-family:inherit;
-  -webkit-appearance:none;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:#0f0f10;color:#f0f0f0;
+  font-family:-apple-system,system-ui,'Segoe UI',Roboto,sans-serif;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:24px;text-align:center;min-height:100vh;
+  -webkit-tap-highlight-color:transparent;
 }
-.btn:active{background:#252533}
-.btn .num{
-  width:30px;height:30px;flex-shrink:0;
-  border-radius:50%;background:#2a2a3a;
-  display:flex;align-items:center;justify-content:center;
+.logo{width:90px;height:90px;border-radius:50%;margin-bottom:22px;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.spinner{
+  width:38px;height:38px;border-radius:50%;
+  border:3px solid rgba(255,255,255,.12);
+  border-top-color:#f0f0f0;
+  animation:spin .8s linear infinite;
+  margin-bottom:18px;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.msg{font-size:15px;color:#bdbdbd;max-width:340px;line-height:1.5em}
+
+/* Fallback UI (shown only if the trick fails) */
+#fallback{display:none;width:100%;max-width:380px;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+#fallback h1{font-size:20px;font-weight:700;margin-bottom:8px}
+#fallback p{font-size:14px;color:#bdbdbd;line-height:1.5em;margin-bottom:18px}
+.step{
+  display:flex;align-items:flex-start;gap:12px;text-align:left;
+  background:#181819;border:1px solid #2a2a2c;border-radius:12px;
+  padding:13px 14px;margin-bottom:10px;
+}
+.step .n{
+  width:26px;height:26px;flex-shrink:0;border-radius:50%;
+  background:#2a2a2c;display:flex;align-items:center;justify-content:center;
   font-size:13px;font-weight:700;
 }
-.btn .txt{flex:1}
-.btn .small{display:block;font-size:11px;color:#888;font-weight:400;margin-top:2px}
-
-#log{background:#000;border-radius:10px;padding:10px;font-family:ui-monospace,Menlo,monospace;font-size:11px;min-height:80px;max-height:240px;overflow-y:auto;white-space:pre-wrap;word-break:break-all}
-.log-line{padding:3px 0;border-bottom:1px solid #1a1a1a;line-height:1.4em}
-.log-line.hit{color:#5cca7e}
-.log-line.miss{color:#ca5c5c}
-
-.clear-btn{
-  background:none;border:1px solid #333;color:#888;
-  border-radius:8px;padding:5px 10px;font-size:11px;
-  cursor:pointer;float:right;font-family:inherit;
+.step .t{font-size:13.5px;line-height:1.45em;padding-top:2px}
+.dots{display:inline-block;background:rgba(255,255,255,.15);border-radius:5px;padding:0 6px;font-weight:800;letter-spacing:1px}
+.copied{
+  display:flex;align-items:center;gap:8px;justify-content:center;
+  background:rgba(92,202,126,.12);border:1px solid rgba(92,202,126,.35);
+  border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600;color:#5cca7e;
+  margin-top:6px;
 }
+.copied svg{width:14px;height:14px;stroke:#5cca7e;fill:none}
+.retry{
+  display:block;margin-top:14px;width:100%;
+  background:#1e1e2a;color:#fff;border:1px solid #3a3a4a;
+  border-radius:10px;padding:12px;font-size:14px;font-weight:600;
+  cursor:pointer;font-family:inherit;
+}
+.retry:active{background:#252533}
 </style>
 </head><body>
 
-<h1>🍎 iOS Webview Test</h1>
-<p class="sub">Open this from TikTok. Tap each button. The log shows what happened.</p>
-
-<div class="box">
-  <div class="label">User-Agent</div>
-  <div class="val" id="ua"></div>
+<div id="loading">
+  <img src="notmyleaks.png" class="logo" alt="NotMyLeaks" onerror="this.style.display='none'">
+  <div class="spinner"></div>
+  <div class="msg">Opening NotMyLeaks…</div>
 </div>
 
-<div class="box">
-  <div class="label">Detection</div>
-  <div id="detect"></div>
-</div>
+<div id="fallback">
+  <img src="notmyleaks.png" class="logo" alt="NotMyLeaks" onerror="this.style.display='none'">
+  <h1>One more tap</h1>
+  <p>This app blocks external links. Open the site in your browser in 2 quick steps:</p>
 
-<!-- Five different methods, each a real anchor tag so the tap is "user-initiated" -->
-
-<a class="btn" href="https://www.notmyleaks.com" target="_blank" onclick="track(1,'plain https + target=_blank')">
-  <div class="num">1</div>
-  <div class="txt">Plain https link (target=_blank)
-    <span class="small">href = https://www.notmyleaks.com</span>
+  <div class="step">
+    <div class="n">1</div>
+    <div class="t">Tap the <span class="dots">···</span> menu in the top-right corner.</div>
   </div>
-</a>
-
-<a class="btn" href="x-safari-https://www.notmyleaks.com" onclick="track(2,'x-safari-https scheme')">
-  <div class="num">2</div>
-  <div class="txt">x-safari-https:// scheme
-    <span class="small">Undocumented Safari URL scheme</span>
+  <div class="step">
+    <div class="n">2</div>
+    <div class="t">Tap <b>"Open in browser"</b> (or <b>"Open in Safari/Chrome"</b>).</div>
   </div>
-</a>
 
-<a class="btn" href="x-web-search://?notmyleaks.com" onclick="track(3,'x-web-search scheme')">
-  <div class="num">3</div>
-  <div class="txt">x-web-search:// scheme
-    <span class="small">Forces Safari with a search query</span>
+  <div class="copied" id="copied">
+    <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <span>Link copied — paste into a browser</span>
   </div>
-</a>
 
-<a class="btn" href="googlechrome://www.notmyleaks.com" onclick="track(4,'googlechrome scheme')">
-  <div class="num">4</div>
-  <div class="txt">googlechrome:// scheme
-    <span class="small">Opens in Chrome if installed</span>
-  </div>
-</a>
-
-<a class="btn" href="#" onclick="method5();return false">
-  <div class="num">5</div>
-  <div class="txt">window.open in new tab
-    <span class="small">JS: window.open('https://...', '_blank')</span>
-  </div>
-</a>
-
-<a class="btn" href="#" onclick="method6();return false">
-  <div class="num">6</div>
-  <div class="txt">Copy link to clipboard
-    <span class="small">Tests if clipboard works in this webview</span>
-  </div>
-</a>
-
-<div class="box">
-  <div class="label">Log <button class="clear-btn" onclick="clearLog()">Clear</button></div>
-  <div id="log">Tap a button above…</div>
+  <button class="retry" onclick="tryAgain()">Try again</button>
 </div>
 
 <script>
-var UA = navigator.userAgent || '';
-document.getElementById('ua').textContent = UA;
+(function(){
+  var TARGET = 'https://notmyleaks.com';
+  var UA = navigator.userAgent || '';
+  var isAndroid = /Android/i.test(UA);
+  var isIOS = /iPhone|iPad|iPod/i.test(UA);
+  var isInApp = /TikTok|musical_ly|Bytedance|Instagram|FBAN|FBAV|FB_IAB|Snapchat|Line|Twitter|Pinterest/i.test(UA);
 
-function tag(label, on){
-  return '<span class="tag '+(on?'yes':'no')+'">'+label+': '+(on?'YES':'no')+'</span>';
-}
-var isAndroid = /Android/i.test(UA);
-var isIOS     = /iPhone|iPad|iPod/i.test(UA);
-var isTikTok  = /TikTok|musical_ly|Bytedance/i.test(UA);
-var isInApp   = isTikTok || /Instagram|FBAN|FBAV|FB_IAB|Snapchat|Line/i.test(UA);
-
-document.getElementById('detect').innerHTML =
-  tag('iOS', isIOS) +
-  tag('Android', isAndroid) +
-  tag('TikTok webview', isTikTok) +
-  tag('In-app browser (any)', isInApp);
-
-var logEl = document.getElementById('log');
-function log(msg, cls){
-  if(logEl.textContent === 'Tap a button above…') logEl.innerHTML = '';
-  var t = new Date().toLocaleTimeString();
-  var d = document.createElement('div');
-  d.className = 'log-line' + (cls?' '+cls:'');
-  d.textContent = '['+t+'] '+msg;
-  logEl.insertBefore(d, logEl.firstChild);
-}
-function clearLog(){ logEl.innerHTML='Tap a button above…'; }
-
-/* Detect whether the page leaves (= a method actually worked) */
-function watchLeave(label){
-  var t0 = Date.now();
-  var left = false;
-  var onHide = function(){
-    if(!left){
-      left = true;
-      log('  → page went HIDDEN after '+(Date.now()-t0)+'ms — '+label+' WORKED ✓','hit');
-    }
-  };
-  document.addEventListener('visibilitychange', function(){
-    if(document.hidden) onHide();
-  });
-  window.addEventListener('pagehide', onHide);
-  window.addEventListener('blur', function(){
-    setTimeout(function(){ if(document.hidden) onHide(); }, 50);
-  });
-  setTimeout(function(){
-    if(!left) log('  → still here after '+(Date.now()-t0)+'ms — '+label+' did nothing','miss');
-  }, 2000);
-}
-
-function track(n, label){
-  log('TEST '+n+' tapped: '+label);
-  watchLeave(label);
-  // For anchor tags we let the default behaviour fire — don't preventDefault.
-}
-
-function method5(){
-  log('TEST 5 tapped: window.open');
-  watchLeave('window.open');
-  var w = window.open('https://www.notmyleaks.com','_blank');
-  if(!w){ log('  → window.open returned NULL — blocked','miss'); }
-  else  { log('  → window.open returned a window object'); }
-}
-
-function method6(){
-  log('TEST 6 tapped: clipboard');
-  var url='https://www.notmyleaks.com';
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(url).then(function(){
-      log('  → clipboard API: copied ✓','hit');
-    }).catch(function(e){
-      log('  → clipboard API failed: '+e.message,'miss');
-      legacy(url);
-    });
-  } else {
-    log('  → no clipboard API, trying legacy…');
-    legacy(url);
+  // Desktop or a real mobile browser: just go straight to the site.
+  if (!isInApp) {
+    window.location.replace(TARGET);
+    return;
   }
-}
-function legacy(url){
-  try{
-    var ta=document.createElement('textarea');ta.value=url;ta.style.position='fixed';ta.style.opacity='0';
-    document.body.appendChild(ta);ta.select();
-    var ok=document.execCommand('copy');document.body.removeChild(ta);
-    log('  → legacy copy: '+(ok?'success ✓':'failed ✗'), ok?'hit':'miss');
-  }catch(e){ log('  → legacy copy error: '+e.message,'miss'); }
-}
+
+  // ----- IN-APP BROWSER PATH -----
+
+  var loadedAt = Date.now();
+  var fallbackShown = false;
+
+  function showFallback(){
+    if (fallbackShown) return;
+    fallbackShown = true;
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('fallback').style.display = 'flex';
+    document.getElementById('fallback').style.flexDirection = 'column';
+    document.getElementById('fallback').style.alignItems = 'center';
+    // Copy the URL so user can paste it
+    copyText(TARGET);
+  }
+
+  function copyText(text){
+    var ok = false;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(function(){ legacy(text); });
+        return;
+      }
+    } catch(e){}
+    legacy(text);
+  }
+  function legacy(text){
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    } catch(e){}
+  }
+
+  // Watch for the page actually leaving (= trick worked)
+  var didLeave = false;
+  function onLeave(){ didLeave = true; }
+  document.addEventListener('visibilitychange', function(){ if (document.hidden) onLeave(); });
+  window.addEventListener('pagehide', onLeave);
+  window.addEventListener('blur', function(){
+    setTimeout(function(){ if (document.hidden) onLeave(); }, 50);
+  });
+
+  function fireAndroid(){
+    var clean = TARGET.replace(/^https?:\/\//, '');
+    var intentUrl = 'intent://' + clean
+      + '#Intent;scheme=https;action=android.intent.action.VIEW;'
+      + 'category=android.intent.category.BROWSABLE;'
+      + 'S.browser_fallback_url=' + encodeURIComponent(TARGET) + ';end';
+    try { window.location.href = intentUrl; } catch(e){}
+  }
+
+  function fireIOS(){
+    // Shortcuts x-callback-url trick: call a non-existent shortcut, so the
+    // x-error URL gets opened by iOS itself — which means Safari.
+    var encoded = encodeURIComponent(TARGET);
+    var shortcutsUrl = 'shortcuts://x-callback-url/run-shortcut'
+      + '?name=nml-' + Math.random().toString(36).slice(2,10)
+      + '&x-error=' + encoded
+      + '&x-cancel=' + encoded;
+    try { window.location.href = shortcutsUrl; } catch(e){}
+  }
+
+  function attempt(){
+    didLeave = false;
+    if (isAndroid) fireAndroid();
+    else if (isIOS) fireIOS();
+    else { showFallback(); return; }
+
+    // Give the OS up to 1.5s to take over.
+    setTimeout(function(){
+      if (didLeave || document.hidden) return; // success
+      showFallback();
+    }, 1500);
+  }
+
+  // The first navigation attempt sometimes only works after a user-initiated
+  // tap on iOS (some webviews block auto-navigation). We try anyway on load,
+  // and the "Try again" button gives a user-initiated retry if needed.
+  window.tryAgain = attempt;
+
+  // Small delay so the page paints (logo + spinner) before we attempt.
+  // Also waits for clipboard permission to be sane.
+  setTimeout(attempt, 80);
+})();
 </script>
 </body></html>
