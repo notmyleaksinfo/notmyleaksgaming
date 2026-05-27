@@ -329,6 +329,61 @@ h1{margin:0}
 .copy-done.show{display:flex}
 .copy-done svg{stroke:#5cca7e;fill:none;width:14px;height:14px}
 
+/* ===== In-app browser banner ===== */
+.iab-banner{
+  display:none;
+  align-items:center;
+  gap:10px;
+  background:linear-gradient(90deg,#2a2030,#241d2e);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  margin:0 auto 6px;
+  width:90%;
+  max-width:600px;
+  padding:11px 14px;
+  font-size:12.5px;
+  line-height:1.4em;
+  color:#f0f0f0;
+}
+.iab-banner.show{display:flex}
+.iab-banner .iab-ico{
+  width:30px;height:30px;flex-shrink:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;
+}
+.iab-banner .iab-ico svg{width:16px;height:16px;stroke:#fff;fill:none}
+.iab-banner b{font-weight:700}
+
+/* ===== "Open in browser" instruction sheet (iOS fallback) ===== */
+.instruct-card{display:flex;flex-direction:column}
+.instruct-body{padding:4px 20px 18px;display:flex;flex-direction:column;gap:16px}
+.instruct-intro{font-size:14px;line-height:1.5em;color:#dcdcdc}
+.instruct-step{display:flex;align-items:flex-start;gap:13px}
+.instruct-num{
+  width:26px;height:26px;flex-shrink:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;
+}
+.instruct-text{font-size:14px;line-height:1.45em;padding-top:2px}
+.instruct-text .dots{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:24px;height:20px;vertical-align:middle;
+  background:rgba(255,255,255,.12);border-radius:5px;
+  font-weight:800;letter-spacing:1px;margin:0 2px;
+}
+.instruct-copied{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(92,202,126,.12);
+  border:1px solid rgba(92,202,126,.35);
+  border-radius:10px;
+  padding:11px 14px;
+  font-size:13px;font-weight:600;color:#5cca7e;
+}
+.instruct-copied svg{stroke:#5cca7e;fill:none;width:15px;height:15px;flex-shrink:0}
+
 @media(max-width:991px){
   .section.link-section{padding-bottom:40px}
 }
@@ -343,6 +398,7 @@ h1{margin:0}
 </head>
 <body>
 
+<!-- ===== Share modal ===== -->
 <div class="modal-overlay" id="share-modal" onclick="handleOverlay(event)">
   <div class="modal-card">
     <div class="modal-header">
@@ -418,6 +474,36 @@ h1{margin:0}
   </div>
 </div>
 
+<!-- ===== iOS "Open in browser" instruction sheet ===== -->
+<div class="modal-overlay" id="instruct-modal" onclick="handleInstructOverlay(event)">
+  <div class="modal-card instruct-card">
+    <div class="modal-header">
+      <span>Open in browser</span>
+      <button class="modal-close" onclick="closeInstruct()">
+        <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="instruct-body">
+      <p class="instruct-intro">This app blocks opening external links directly. Open this page in your normal browser in 2 steps:</p>
+
+      <div class="instruct-step">
+        <div class="instruct-num">1</div>
+        <div class="instruct-text">Tap the <span class="dots">···</span> menu in the top-right corner of this screen.</div>
+      </div>
+
+      <div class="instruct-step">
+        <div class="instruct-num">2</div>
+        <div class="instruct-text">Tap <b>"Open in browser"</b> (or <b>"Open in Safari"</b>). The site loads normally there.</div>
+      </div>
+
+      <div class="instruct-copied">
+        <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span id="instruct-copied-text">Link copied — you can also paste it into any browser.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="page-wrapper">
   <div class="profile-bg-hero-wrapper">
     <button class="page-share" onclick="openModal()">
@@ -428,7 +514,15 @@ h1{margin:0}
     </button>
   </div>
 
-  <div style="width:100%;padding:70px 0 0">
+  <!-- In-app browser banner (shown only inside TikTok/IG/etc webview) -->
+  <div class="iab-banner" id="iab-banner">
+    <div class="iab-ico">
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+    </div>
+    <div>For the full site, tap <b>···</b> top-right → <b>Open in browser</b>.</div>
+  </div>
+
+  <div style="width:100%;padding:14px 0 0">
     <div class="section-container">
       <div class="profile-info-wrapper">
         <div class="profile-info-top-wrapper">
@@ -441,7 +535,7 @@ h1{margin:0}
           <p class="profile-bio">#1 Best Place for Mod Menus, Cheats & Game Accounts</p>
         </div>
         <div class="contact-button-wrapper">
-          <a href="https://notmyleaks.com/pages/contact" target="_blank" class="contact-button">
+          <a href="https://notmyleaks.com/pages/contact" class="contact-button" onclick="openWebsite(event,'https://notmyleaks.com/pages/contact')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             Contact
           </a>
@@ -455,7 +549,7 @@ h1{margin:0}
       <div class="profile-link-wrapper">
 
         <div class="link-item-wrapper">
-          <a href="https://www.notmyleaks.com" class="link-button" target="_blank">
+          <a href="https://www.notmyleaks.com" class="link-button" onclick="openWebsite(event,'https://www.notmyleaks.com')">
             <div class="link-icon-float" style="box-shadow:0 8px 18px -4px rgba(0,0,0,.7);background:#1e1e1f">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             </div>
@@ -570,50 +664,150 @@ h1{margin:0}
 </div>
 
 <script>
+/* ---------- Environment detection ---------- */
+var UA = navigator.userAgent || navigator.vendor || '';
+function isAndroid(){ return /Android/i.test(UA); }
+function isIOS(){ return /iPhone|iPad|iPod/i.test(UA); }
+// In-app / embedded browsers that trap external https links (walled gardens)
+function isInAppBrowser(){
+  return /TikTok|musical_ly|Bytedance|Instagram|FBAN|FBAV|FB_IAB|Snapchat|Line|Twitter|Pinterest/i.test(UA);
+}
+
+/* ---------- Social deep links (UNCHANGED behaviour) ---------- */
 function openApp(e, deepLink, fallback) {
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  if (!isMobile) return;
+  var isMobile = /iPhone|iPad|iPod|Android/i.test(UA);
+  if (!isMobile) return; // desktop: let the normal href open
   e.preventDefault();
-  const start = Date.now();
+  var start = Date.now();
   window.location = deepLink;
-  setTimeout(() => {
+  setTimeout(function(){
     if (Date.now() - start < 1500) {
       window.open(fallback, '_blank');
     }
   }, 1200);
 }
 
+/* ---------- Website / Contact (no app to deep-link into) ---------- */
+function openWebsite(e, url){
+  // Desktop or a real mobile browser: just open normally.
+  if(!isInAppBrowser()){
+    return; // default anchor behaviour handles it
+  }
+
+  e.preventDefault();
+
+  // ANDROID: force the link out of the webview into Chrome via an intent URL.
+  if(isAndroid()){
+    var clean = url.replace(/^https?:\/\//, '');
+    // Try Chrome first; the S.browser_fallback_url makes it degrade gracefully.
+    var intentUrl = 'intent://' + clean +
+      '#Intent;scheme=https;package=com.android.chrome;' +
+      'S.browser_fallback_url=' + encodeURIComponent(url) + ';end';
+    try {
+      window.location.href = intentUrl;
+    } catch(err){
+      window.location.href = url; // last resort
+    }
+    return;
+  }
+
+  // iOS: cannot break out of the webview programmatically.
+  // Copy the URL and show clear "Open in browser" instructions.
+  copyText(url, function(ok){
+    var t = document.getElementById('instruct-copied-text');
+    if(ok){
+      t.textContent = 'Link copied — you can also paste it into any browser.';
+    } else {
+      t.textContent = url; // show the URL so they can copy it manually
+    }
+    openInstruct();
+  });
+}
+
+/* ---------- Clipboard helper (with fallback for old webviews) ---------- */
+function copyText(text, cb){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text)
+      .then(function(){ cb && cb(true); })
+      .catch(function(){ legacyCopy(text, cb); });
+  } else {
+    legacyCopy(text, cb);
+  }
+}
+function legacyCopy(text, cb){
+  try {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    var ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    cb && cb(ok);
+  } catch(err){
+    cb && cb(false);
+  }
+}
+
+/* ---------- Instruction modal (iOS) ---------- */
+function openInstruct(){
+  var m = document.getElementById('instruct-modal');
+  m.style.display = 'flex';
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ m.classList.add('open'); }); });
+  document.body.style.overflow = 'hidden';
+}
+function closeInstruct(){
+  var m = document.getElementById('instruct-modal');
+  m.classList.remove('open');
+  setTimeout(function(){ m.style.display='none'; document.body.style.overflow=''; }, 280);
+}
+function handleInstructOverlay(e){
+  if(e.target === document.getElementById('instruct-modal')) closeInstruct();
+}
+
+/* ---------- Top banner inside in-app browsers ---------- */
+document.addEventListener('DOMContentLoaded', function(){
+  if(isInAppBrowser()){
+    var b = document.getElementById('iab-banner');
+    if(b) b.classList.add('show');
+  }
+});
+
+/* ---------- Share modal ---------- */
 function openModal(){
-  const m=document.getElementById('share-modal');
+  var m=document.getElementById('share-modal');
   m.style.display='flex';
-  requestAnimationFrame(()=>requestAnimationFrame(()=>m.classList.add('open')));
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ m.classList.add('open'); }); });
   document.body.style.overflow='hidden';
 }
 function closeModal(){
-  const m=document.getElementById('share-modal');
+  var m=document.getElementById('share-modal');
   m.classList.remove('open');
-  setTimeout(()=>{m.style.display='none';document.body.style.overflow='';},280);
+  setTimeout(function(){ m.style.display='none'; document.body.style.overflow=''; }, 280);
 }
 function handleOverlay(e){
   if(e.target===document.getElementById('share-modal')) closeModal();
 }
-document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal();});
+document.addEventListener('keydown', function(e){
+  if(e.key==='Escape'){ closeModal(); closeInstruct(); }
+});
 
 function shareVia(p){
-  const url=encodeURIComponent('https://link.notmyleaks.com');
-  const t=encodeURIComponent('NotMyLeaks');
-  const map={
-    x:`https://twitter.com/intent/tweet?url=${url}&text=${t}`,
-    whatsapp:`https://api.whatsapp.com/send?text=${t}%20${url}`
+  var url=encodeURIComponent('https://link.notmyleaks.com');
+  var t=encodeURIComponent('NotMyLeaks');
+  var map={
+    x:'https://twitter.com/intent/tweet?url='+url+'&text='+t,
+    whatsapp:'https://api.whatsapp.com/send?text='+t+'%20'+url
   };
   if(map[p]) window.open(map[p],'_blank');
 }
 
 function copyLink(){
-  navigator.clipboard.writeText('https://link.notmyleaks.com').then(()=>{
-    const d=document.getElementById('copy-done');
+  copyText('https://link.notmyleaks.com', function(){
+    var d=document.getElementById('copy-done');
     d.classList.add('show');
-    setTimeout(()=>d.classList.remove('show'),2000);
+    setTimeout(function(){ d.classList.remove('show'); }, 2000);
   });
 }
 </script>
