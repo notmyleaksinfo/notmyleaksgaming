@@ -165,6 +165,53 @@ h1{margin:0}
 .copy-done.show{display:flex}
 .copy-done svg{stroke:#5cca7e;fill:none;width:14px;height:14px}
 
+/* ====== TikTok-iOS escape overlay ====== */
+.escape-overlay{
+  z-index:1100;position:fixed;inset:0;background:rgba(8,8,9,.92);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+  padding:28px 22px calc(28px + env(safe-area-inset-bottom,0px));text-align:center;
+  opacity:0;transition:opacity .2s;
+}
+.escape-overlay.open{display:flex;opacity:1}
+.escape-arrow-hint{
+  position:absolute;top:8px;right:14px;display:flex;flex-direction:column;
+  align-items:flex-end;gap:4px;color:#ffd23f;font-size:12px;font-weight:600;
+  animation:nudge 1.1s ease-in-out infinite;
+}
+.escape-arrow-hint svg{width:26px;height:26px;stroke:#ffd23f;fill:none}
+@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.escape-card{
+  background:var(--card-bg);border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;width:100%;max-width:380px;padding:26px 22px 22px;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+}
+.escape-logo{width:60px;height:60px;border-radius:50%;margin:0 auto 14px;display:block;object-fit:cover}
+.escape-title{font-size:20px;font-weight:700;margin-bottom:6px;letter-spacing:-.3px}
+.escape-sub{font-size:13.5px;color:#bdbdbd;line-height:1.5em;margin-bottom:20px}
+.escape-btn{
+  width:100%;border:none;border-radius:12px;padding:15px;font-family:var(--font);
+  font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;
+  justify-content:center;gap:9px;background:#fff;color:#0f0f10;transition:transform .1s,opacity .15s;
+}
+.escape-btn:active{transform:scale(.98)}
+.escape-btn svg{width:18px;height:18px;stroke:#0f0f10;fill:none}
+.escape-divider{display:flex;align-items:center;gap:10px;margin:18px 2px 14px;color:#7a7a7a;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.escape-divider::before,.escape-divider::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.09)}
+.escape-steps{text-align:left;display:flex;flex-direction:column;gap:11px;margin-bottom:18px}
+.escape-step{display:flex;align-items:flex-start;gap:11px;font-size:13.5px;color:#dcdcdc;line-height:1.45em}
+.escape-step-num{flex:none;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;margin-top:1px}
+.escape-step b{color:#fff;font-weight:600}
+.escape-copy{
+  width:100%;border:1px solid var(--dark-mode-inactive);border-radius:10px;
+  padding:11px;background:none;color:#cfcfcf;font-family:var(--font);font-size:12px;
+  font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .12s;
+}
+.escape-copy:active{background:rgba(255,255,255,.06)}
+.escape-copy svg{width:14px;height:14px;stroke:#cfcfcf;fill:none}
+.escape-copy.copied{color:#5cca7e;border-color:rgba(92,202,126,.4)}
+.escape-copy.copied svg{stroke:#5cca7e}
+
 @media(max-width:991px){.section.link-section{padding-bottom:40px}}
 @media(max-width:479px){
   .profile-bg-hero-wrapper{height:50px}
@@ -176,6 +223,37 @@ h1{margin:0}
 </style>
 </head>
 <body>
+
+<!-- ====== TikTok-iOS escape overlay ====== -->
+<div class="escape-overlay" id="escape-overlay">
+  <div class="escape-arrow-hint">
+    <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/><polyline points="14 4 19 4 19 9" transform="translate(0 -1)"/></svg>
+    <span>tik op ⋯</span>
+  </div>
+  <div class="escape-card">
+    <img src="notmyleaks.png" class="escape-logo" alt="NotMyLeaks">
+    <div class="escape-title">Open buiten TikTok</div>
+    <div class="escape-sub">TikTok blokkeert deze link in z'n eigen browser. Eén tik en je zit in Safari — ingelogd en zonder gedoe.</div>
+
+    <button class="escape-btn" onclick="escapeRetry()">
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      Open in Safari
+    </button>
+
+    <div class="escape-divider">of handmatig</div>
+
+    <div class="escape-steps">
+      <div class="escape-step"><span class="escape-step-num">1</span><span>Tik op de <b>⋯</b> (of het deel-icoon) rechtsboven in dit venster.</span></div>
+      <div class="escape-step"><span class="escape-step-num">2</span><span>Kies <b>"Open in browser"</b> of <b>"Open in Safari"</b>.</span></div>
+      <div class="escape-step"><span class="escape-step-num">3</span><span>Klaar — de pagina laadt gewoon in Safari.</span></div>
+    </div>
+
+    <button class="escape-copy" id="escape-copy" onclick="escapeCopy()">
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      <span id="escape-copy-label">Of kopieer de link</span>
+    </button>
+  </div>
+</div>
 
 <div class="modal-overlay" id="share-modal" onclick="handleOverlay(event)">
   <div class="modal-card">
@@ -356,17 +434,82 @@ h1{margin:0}
 /* ====== Environment detection ====== */
 var UA = navigator.userAgent || '';
 function isAndroid(){ return /Android/i.test(UA); }
-function isIOS(){ return /iPhone|iPad|iPod/i.test(UA); }
+function isIOS(){
+  return /iPhone|iPad|iPod/i.test(UA) ||
+         // iPadOS 13+ reports as Mac but is touch-capable
+         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+function isTikTok(){ return /TikTok|musical_ly|Bytedance|BytedanceWebview/i.test(UA); }
 function isInAppBrowser(){
   // Any major in-app webview
   return /TikTok|musical_ly|Bytedance|Instagram|FBAN|FBAV|FB_IAB|Snapchat|Line|Twitter|Pinterest|Threads|LinkedInApp/i.test(UA);
 }
 
+/* ====== Escape overlay (TikTok on iOS) ======
+   iOS WKWebViews used by TikTok do NOT honour x-safari-https:// the way
+   Instagram/Facebook/Threads do, and there is no public URL scheme that
+   forces an arbitrary https page into Safari from inside the webview.
+   So for TikTok-iOS we surface a clean one-tap escape sheet instead of
+   silently dumping the user back into the in-app browser.                   */
+var _escapeUrl = '';
+
+function showEscape(url){
+  _escapeUrl = url || 'https://link.notmyleaks.com';
+  resetEscapeCopy();
+  var o = document.getElementById('escape-overlay');
+  o.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function hideEscape(){
+  var o = document.getElementById('escape-overlay');
+  o.classList.remove('open');
+  document.body.style.overflow = '';
+}
+/* The "Open in Safari" button. This runs on a REAL user gesture, which is
+   the best possible moment to (re)try the scheme — some webview/OS combos
+   only honour the hand-off from inside a genuine tap. If it doesn't fire,
+   the manual ⋯ instructions stay on screen, so the user is never stuck.    */
+function escapeRetry(){
+  var url = _escapeUrl;
+  var didHide = false;
+  var onHide = function(){ didHide = true; };
+  document.addEventListener('visibilitychange', onHide, {once:true});
+  window.addEventListener('pagehide', onHide, {once:true});
+
+  // Try the Safari scheme on the gesture.
+  try { window.location.href = url.replace(/^https?:\/\//, 'x-safari-https://'); } catch(err){}
+
+  // As a second attempt, a real-gesture window.open sometimes pops the
+  // system browser even when a programmatic redirect won't.
+  setTimeout(function(){
+    if(didHide || document.hidden) return;
+    try { window.open(url, '_blank'); } catch(err){}
+  }, 250);
+}
+function escapeCopy(){
+  copyText(_escapeUrl, function(ok){
+    var btn = document.getElementById('escape-copy');
+    var lbl = document.getElementById('escape-copy-label');
+    if(ok){
+      btn.classList.add('copied');
+      lbl.textContent = 'Gekopieerd — plak in Safari';
+      setTimeout(resetEscapeCopy, 2600);
+    }
+  });
+}
+function resetEscapeCopy(){
+  var btn = document.getElementById('escape-copy');
+  var lbl = document.getElementById('escape-copy-label');
+  if(btn){ btn.classList.remove('copied'); }
+  if(lbl){ lbl.textContent = 'Of kopieer de link'; }
+}
+
 /* ====== Open a website URL (no specific app target) ======
    Used by Website + Contact buttons.
-   - Android in-app: use intent:// to force the default browser.
-   - iOS in-app (except TikTok): try x-safari-https:// to escape into Safari.
-   - Otherwise: normal href.                                                  */
+   - Android in-app: intent:// forces the default browser (true zero-tap).
+   - iOS in-app (IG/FB/Threads/LinkedIn): x-safari-https:// escapes silently.
+   - iOS in TikTok: scheme is blocked, so fall through to the escape sheet
+     instead of trapping the user inside the webview.                        */
 function openExternal(e, url){
   if(!isInAppBrowser()) return; // desktop or real browser → normal link
   e.preventDefault();
@@ -382,16 +525,29 @@ function openExternal(e, url){
   }
 
   if(isIOS()){
-    // x-safari-https:// works in Instagram/Facebook/Threads/LinkedIn/etc. on iOS.
-    // Confirmed broken in TikTok — but that's fine, this page isn't used from
-    // the TikTok bio anymore.
-    var safariUrl = url.replace(/^https?:\/\//, 'x-safari-https://');
-    try { window.location.href = safariUrl; } catch(err){}
-    // Tiny fallback timer: if Safari didn't take over, just load the page
-    // normally inside the in-app browser so the user isn't stuck.
+    var escaped = false;
+    var onHide = function(){ escaped = true; };
+    document.addEventListener('visibilitychange', onHide, {once:true});
+    window.addEventListener('pagehide', onHide, {once:true});
+
+    // Try the silent Safari scheme. Works in IG/FB/Threads/LinkedIn.
+    try { window.location.href = url.replace(/^https?:\/\//, 'x-safari-https://'); } catch(err){}
+
     setTimeout(function(){
-      if(!document.hidden) window.location.href = url;
-    }, 1500);
+      document.removeEventListener('visibilitychange', onHide);
+      window.removeEventListener('pagehide', onHide);
+      if(escaped || document.hidden) return; // Safari took over → done.
+
+      // Still visible → the scheme was swallowed. This is TikTok's behaviour.
+      // Show the one-tap escape sheet rather than reloading inside the webview.
+      if(isTikTok()){
+        showEscape(url);
+      } else {
+        // Unknown iOS webview that also blocked the scheme: last resort,
+        // load normally so the user at least sees the page.
+        window.location.href = url;
+      }
+    }, 900);
     return;
   }
 
@@ -402,9 +558,9 @@ function openExternal(e, url){
 /* ====== Open a social app ======
    - Desktop: normal link.
    - Mobile: try the app scheme. If the app doesn't grab it (page stays
-     visible), fall back to the https URL via the same escape route we
-     use for openExternal — that way the link still leaves the in-app
-     browser cleanly on Android, and tries Safari on iOS.                     */
+     visible), fall back to the https URL via openExternal — which on
+     TikTok-iOS surfaces the escape sheet, and on Android/other iOS
+     escapes the in-app browser cleanly.                                     */
 function openApp(e, deepLink, fallback){
   var mobile = isIOS() || isAndroid();
   if(!mobile) return;
@@ -441,20 +597,26 @@ function closeModal(){
 function handleOverlay(e){
   if(e.target===document.getElementById('share-modal')) closeModal();
 }
-document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+document.addEventListener('keydown', function(e){
+  if(e.key==='Escape'){ closeModal(); hideEscape(); }
+});
 
-function copyLink(){
-  var text='https://link.notmyleaks.com';
+/* ====== Clipboard helpers ====== */
+function copyText(text, cb){
   if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(showCopied).catch(function(){ legacyCopy(text); });
-  } else { legacyCopy(text); }
+    navigator.clipboard.writeText(text).then(function(){ cb && cb(true); })
+      .catch(function(){ legacyCopy(text, cb); });
+  } else { legacyCopy(text, cb); }
 }
-function legacyCopy(text){
+function legacyCopy(text, cb){
   try{
     var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
     document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
-    showCopied();
-  }catch(e){}
+    cb && cb(true);
+  }catch(e){ cb && cb(false); }
+}
+function copyLink(){
+  copyText('https://link.notmyleaks.com', function(ok){ if(ok) showCopied(); });
 }
 function showCopied(){
   var d=document.getElementById('copy-done');
