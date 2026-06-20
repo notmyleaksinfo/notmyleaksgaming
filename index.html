@@ -174,7 +174,7 @@ h1{margin:0}
   opacity:0;transition:opacity .2s;
 }
 .escape-overlay.open{display:flex;opacity:1}
-.escape-pointer{position:absolute;top:8px;right:20px;display:flex;flex-direction:column;align-items:center;gap:2px}
+.escape-pointer{position:absolute;top:8px;right:8px;display:flex;flex-direction:column;align-items:center;gap:2px}
 .escape-pointer svg{width:22px;height:13px;stroke:#fff;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .escape-pointer svg:nth-child(1){opacity:1}
 .escape-pointer svg:nth-child(2){opacity:.5}
@@ -187,15 +187,6 @@ h1{margin:0}
 .escape-logo{width:60px;height:60px;border-radius:50%;margin:0 auto 14px;display:block;object-fit:cover}
 .escape-title{font-size:20px;font-weight:700;margin-bottom:6px;letter-spacing:-.3px}
 .escape-sub{font-size:13.5px;color:#bdbdbd;line-height:1.5em;margin-bottom:20px}
-.escape-btn{
-  width:100%;border:none;border-radius:12px;padding:12px;font-family:var(--font);
-  font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;
-  justify-content:center;gap:9px;background:#fff;color:#0f0f10;transition:transform .1s,opacity .15s;
-}
-.escape-btn:active{transform:scale(.98)}
-.escape-btn svg{width:18px;height:18px;stroke:#0f0f10;fill:none}
-.escape-divider{display:flex;align-items:center;gap:10px;margin:18px 2px 14px;color:#7a7a7a;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
-.escape-divider::before,.escape-divider::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.09)}
 .escape-steps{text-align:left;display:flex;flex-direction:column;gap:11px}
 .escape-step{display:flex;align-items:flex-start;gap:11px;font-size:13.5px;color:#dcdcdc;line-height:1.45em}
 .escape-step-num{flex:none;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;margin-top:1px}
@@ -223,19 +214,12 @@ h1{margin:0}
   <div class="escape-card">
     <img src="notmyleaks.png" class="escape-logo" alt="NotMyLeaks">
     <div class="escape-title">Open outside TikTok</div>
-    <div class="escape-sub">TikTok blocks this link in its own browser. One tap and you're in Safari.</div>
-
-    <button class="escape-btn" onclick="escapeRetry()">
-      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-      Open in Safari
-    </button>
-
-    <div class="escape-divider">or manually</div>
+    <div class="escape-sub">TikTok blocks this link in its own browser. Open it in your browser to continue.</div>
 
     <div class="escape-steps">
       <div class="escape-step"><span class="escape-step-num">1</span><span>Tap the <b>&#8943;</b> at the top right of this window.</span></div>
       <div class="escape-step"><span class="escape-step-num">2</span><span>Choose <b>"Open in browser"</b> or <b>"Open in Safari"</b>.</span></div>
-      <div class="escape-step"><span class="escape-step-num">3</span><span>Done, the page loads in Safari.</span></div>
+      <div class="escape-step"><span class="escape-step-num">3</span><span>Done, the page loads in your browser.</span></div>
     </div>
   </div>
 </div>
@@ -429,12 +413,9 @@ function isInAppBrowser(){
 }
 
 /* ====== Escape overlay (TikTok on iOS) ======
-   TikTok's iOS WKWebView blocks x-safari-https:// outright, and there is no
-   public scheme that forces an arbitrary https page into Safari from inside
-   the webview. So for TikTok-iOS we show this sheet, which sends the user to
-   the linktree in Safari (where every link then works normally).            */
-var _escapeUrl = 'https://link.notmyleaks.com';
-
+   TikTok's iOS WKWebView blocks every known scheme that would force an https
+   page into Safari, so we just show the manual instructions sheet. Once the
+   user follows the steps, the page reopens in Safari where all links work. */
 function showEscape(){
   document.getElementById('escape-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -443,20 +424,15 @@ function hideEscape(){
   document.getElementById('escape-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
-/* "Open in Safari" runs on a REAL user gesture — the best moment to try the
-   Safari hand-off. If it doesn't fire, the manual steps stay on screen so
-   the user is never stuck. */
-function escapeRetry(){
-  var url = _escapeUrl, didHide = false;
-  var onHide = function(){ didHide = true; };
-  document.addEventListener('visibilitychange', onHide, {once:true});
-  window.addEventListener('pagehide', onHide, {once:true});
-  try { window.location.href = url.replace(/^https?:\/\//, 'x-safari-https://'); } catch(err){}
-  setTimeout(function(){
-    if(didHide || document.hidden) return;
-    try { window.open(url, '_blank'); } catch(err){}
-  }, 250);
-}
+
+/* When the page reopens in the real browser (or is restored from iOS Safari's
+   back-forward cache), make sure the overlay is never left open. */
+window.addEventListener('pageshow', function(){
+  if(!isTikTok()) hideEscape();
+});
+document.addEventListener('visibilitychange', function(){
+  if(!document.hidden && !isTikTok()) hideEscape();
+});
 
 /* ====== Open a website URL (no specific app target) ======
    - Android in-app: intent:// forces the default browser (true zero-tap).
